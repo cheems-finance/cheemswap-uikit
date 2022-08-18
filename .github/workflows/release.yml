@@ -1,0 +1,59 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '**'
+
+jobs:
+  release:
+    name: release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Get tag name
+        id: get_tag_name
+        run: echo ::set-output name=TAG_NAME::${GITHUB_REF/refs\/tags\//}
+      
+      - name: Checkout branch
+        env:
+          TAG_NAME: ${{ steps.get_tag_name.outputs.TAG_NAME }}
+        run: git checkout tags/${TAG_NAME} -b ${TAG_NAME}-branch
+
+      - name: Setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 14.x
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      
+      - name: Add auth token
+        run: |
+          cat <<EOT >> .npmrc
+          //registry.npmjs.org/:_authToken=\${NPM_PUBLISH_TOKEN}
+          always-auth=true
+          EOT
+      
+      - name: Release
+        env:
+          TAG_NAME: ${{ steps.get_tag_name.outputs.TAG_NAME }}
+          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+        run: |
+          if [[ "$TAG_NAME" == *"alpha"* ]]; then
+            dist_tag=alpha${TAG_NAME:1:1}
+          elif [[ "$TAG_NAME" == *"beta"* ]]; then
+            dist_tag=beta${TAG_NAME:1:1}
+          else
+            dist_tag=latest
+          fi
+          yarn release -- $TAG_NAME --tag=${dist_tag} --branch ${TAG_NAME}-branch
+          

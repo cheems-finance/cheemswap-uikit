@@ -1,0 +1,17 @@
+{
+  "extends": "@pepedoge/eslint-config-pepeswap",
+  "rules": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "src/setupTests.[jt]s?(x)",
+          "src/testHelpers.[jt]s?(x)",
+          "**/*.test.[jt]s?(x)",
+          "rollup.config.js"
+        ]
+      }
+    ],
+    "no-nested-ternary": 0
+  }
+}
