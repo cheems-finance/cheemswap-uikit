@@ -1,11 +1,11 @@
-/** @jsxImportSource theme-ui */
-import React from "react";
+import styled from "styled-components";
+import { space } from "styled-system";
 import { RadioProps, scales } from "./types";
 
 const getScale = ({ scale }: RadioProps) => {
   switch (scale) {
     case scales.SM:
-      return "21px";
+      return "24px";
     case scales.MD:
     default:
       return "32px";
@@ -15,23 +15,64 @@ const getScale = ({ scale }: RadioProps) => {
 const getCheckedScale = ({ scale }: RadioProps) => {
   switch (scale) {
     case scales.SM:
-      return "9px";
+      return "12px";
     case scales.MD:
     default:
-      return "18px";
+      return "20px";
   }
 };
 
-const Radio: React.FC<RadioProps> = ({ scale = scales.SM, display = "inline-block", className, ...props }) => {
-  const scaleSize = getScale({ scale });
-  const checkedScale = getCheckedScale({ scale });
+const Radio = styled.input.attrs({ type: "radio" })<RadioProps>`
+  appearance: none;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  height: ${getScale};
+  width: ${getScale};
+  vertical-align: middle;
+  transition: background-color 0.2s ease-in-out;
+  border: 0;
+  border-radius: 50%;
+  background-color: ${({ theme }) => theme.colors.inputBorder};
+  box-shadow: ${({ theme }) => theme.shadows.inset};
 
-  return (
-    <span className={className} sx={{ display, width: scaleSize, height: scaleSize, position: "relative" }}>
-      <input type="radio" sx={{ variant: "forms.radio" }} {...props} />
-      <span sx={{ width: checkedScale, height: checkedScale }} />
-    </span>
-  );
+  &:after {
+    border-radius: 50%;
+    content: "";
+    height: ${getCheckedScale};
+    left: 6px;
+    position: absolute;
+    top: 6px;
+    width: ${getCheckedScale};
+  }
+
+  &:hover:not(:disabled):not(:checked) {
+    box-shadow: ${({ theme }) => theme.shadows.focus};
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: ${({ theme }) => theme.shadows.focus};
+  }
+
+  &:checked {
+    background-color: ${({ theme }) => theme.colors.success};
+    &:after {
+      background-color: ${({ theme }) => theme.radio.handleBackground};
+    }
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.6;
+  }
+  ${space}
+`;
+
+Radio.defaultProps = {
+  scale: scales.MD,
+  m: 0,
 };
 
 export default Radio;

@@ -1,63 +1,48 @@
-import { ReactNode } from "react";
-import { ButtonProps as ThemeUIButtonProps } from "theme-ui";
-import { iconTypes } from "../Svg/types";
-import { colorProps } from "../../theme/Apeswap/types";
+import { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
+import { Link, LinkProps } from "react-router-dom";
+import { SpaceProps } from "styled-system";
 
-export enum sizes {
-  SMALL = "sm",
-  MEDIUM = "md",
-  LARGE = "lg",
-}
+export const sizes = {
+  XS: "xs",
+  SM: "sm",
+  MDS: "mds",
+  MD: "md",
+} as const;
+
+export const variants = {
+  PRIMARY: "primary",
+  SECONDARY: "secondary",
+  TEXT: "text",
+  DANGER: "danger",
+  TERTIARY: "tertiary",
+  SUBTLE: "subtle",
+  SUCCESS: "success",
+  YELLOW: "yellow",
+} as const;
 
 export type Sizes = typeof sizes[keyof typeof sizes];
+export type Variants = typeof variants[keyof typeof variants];
 
-export const buttonFontSizes = {
-  [sizes.SMALL]: 1,
-  [sizes.MEDIUM]: 3,
-  [sizes.LARGE]: 6,
-};
+type ButtonTypes = ButtonHTMLAttributes<HTMLButtonElement> | AnchorHTMLAttributes<HTMLAnchorElement> | LinkProps;
 
-export const buttonPadding = {
-  [sizes.SMALL]: { x: 5, y: 2 },
-  [sizes.MEDIUM]: { x: 7, y: 4 },
-  [sizes.LARGE]: { x: 10, y: 6 },
-};
-
-export enum variants {
-  PRIMARY = "primary",
-  SECONDARY = "secondary",
-  TERTIARY = "tertiary",
-  TEXT = "text",
-  SUCCESS = "success",
-  DANGER = "danger",
-}
-
-export enum iconButtonVariants {
-  PRIMARY = "primary",
-  TRANSPARENT = "transparent",
-  CIRCULAR = "circular",
-}
-
-export type sizeProps = `${sizes}`;
-export type variantProps = `${variants}`;
-export type iconButtonVariantsProps = `${iconButtonVariants}`;
-
-export interface ButtonProps extends Omit<ThemeUIButtonProps, "sx"> {
-  variant?: variantProps;
-  size?: sizeProps;
+export type ButtonProps = {
+  variant?: Variants;
+  size?: Sizes;
   startIcon?: ReactNode;
   endIcon?: ReactNode;
   fullWidth?: boolean;
-  load?: boolean;
-  [key: string]: any;
-}
-
-export interface IconButtonProps extends Omit<ButtonProps, "variant"> {
-  variant?: iconButtonVariantsProps;
-  color?: colorProps;
-  background?: colorProps;
-  icon?: iconTypes;
-}
+  isMobile?: boolean;
+  as?: "a" | "button" | typeof Link;
+  href?: string;
+  external?: boolean;
+  isLoading?: boolean;
+  disabled?: boolean;
+  fontFamily?: string;
+  fontSize?: string;
+  fontWeight?: string;
+  color?: string;
+} & ButtonTypes &
+  SpaceProps;
 
 export type ButtonThemeVariant = {
   background: string;
@@ -71,5 +56,5 @@ export type ButtonThemeVariant = {
 };
 
 export type ButtonTheme = {
-  [key in variants]: ButtonThemeVariant;
+  [key in Variants]: ButtonThemeVariant;
 };

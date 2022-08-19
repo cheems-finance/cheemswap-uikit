@@ -30,6 +30,3 @@ yarn-error.log*
 #iCloud
 *.icloud
 .icloud/
-
-# NPM CONFIG
-.npmrc 

@@ -1,33 +1,10 @@
-import React from "react";
-import { Button } from "theme-ui";
-import { Svg } from "../Svg";
-import { icons } from "../Svg/types";
-import { IconButtonProps, iconButtonVariants as variants } from "./types";
-import style from "./styles";
-import colorValues from "../../theme/Apeswap/types";
+import styled from "styled-components";
+import Button from "./Button";
+import { ButtonProps } from "./types";
 
-const IconButton: React.FC<IconButtonProps> = ({
-  icon = icons.DISCORD,
-  color = colorValues.white1,
-  background = colorValues.yellow,
-  variant = variants.PRIMARY,
-  children,
-  ...props
-}) => {
-  return (
-    <Button
-      {...props}
-      variant={variant}
-      sx={{
-        variant: `buttons.${variant}`,
-        background,
-        ...(variant === variants.PRIMARY ? style.primary : {}),
-        ...(variant === variants.TRANSPARENT ? style.transparent : {}),
-      }}
-    >
-      {children || <Svg color={color} icon={icon} {...props} />}
-    </Button>
-  );
-};
+const IconButton = styled(Button)<ButtonProps>`
+  padding: 0;
+  width: ${({ size }) => (size === "sm" ? "32px" : "48px")};
+`;
 
 export default IconButton;

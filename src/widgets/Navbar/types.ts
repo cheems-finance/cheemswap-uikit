@@ -1,7 +1,5 @@
-import { SwitchNetwork } from "../NetworkModal";
-import { Login } from "../WalletModal";
-import { TrackHandler } from "../../util/trackClick";
-import { Language } from "../../components/LangSelector/types";
+import { SwitchNetwork } from "../NetworkModal/types";
+import { Login } from "../WalletModal/types";
 
 export interface LangType {
   code: string;
@@ -30,7 +28,6 @@ export interface MenuSubEntry {
   label: string;
   href: string;
   calloutClass?: string;
-  isNew?: boolean;
 }
 
 export interface MenuEntry {
@@ -41,7 +38,6 @@ export interface MenuEntry {
   href?: string;
   calloutClass?: string;
   initialOpenState?: boolean;
-  isNew?: boolean;
 }
 
 export interface PanelProps {
@@ -49,21 +45,9 @@ export interface PanelProps {
   toggleTheme: (isDark: boolean) => void;
   bananaPriceUsd?: number;
   currentLang: string;
-  langs: Language[];
-  setLang: (lang: Language) => void;
+  langs?: LangType[];
+  setLang: (lang: LangType) => void;
   links: Array<MenuEntry>;
-}
-
-export interface LiveResultProps {
-  apiResult: {
-    id: number;
-    label: string;
-    settings: {
-      id: number;
-      tag: string;
-      navItem: string;
-    }[];
-  }[];
 }
 
 export interface NavProps extends PanelProps {
@@ -73,10 +57,4 @@ export interface NavProps extends PanelProps {
   logout: () => void;
   chainId: number;
   switchNetwork: SwitchNetwork;
-  track?: TrackHandler;
-  liveResult?: LiveResultProps["apiResult"] | undefined;
-  t: (text: string) => string;
-  runFiat: () => void;
-  uDName?: string;
-  iframe: boolean;
 }

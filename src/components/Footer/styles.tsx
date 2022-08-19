@@ -1,8 +1,6 @@
-import { ThemeUIStyleObject } from "theme-ui";
 import styled from "styled-components";
 import { MobileIcon } from "../../widgets/Navbar/icons";
 import { Button } from "../Button";
-import { Flex } from "../Flex";
 import { Text } from "../Text";
 
 export const FlexContainer = styled.div`
@@ -12,7 +10,6 @@ export const FlexContainer = styled.div`
   background-color: ${({ theme }) => (theme.isDark ? theme.colors.background : "rgba(77, 64, 64, 1)")};
   flex-wrap: wrap;
   width: 250px;
-  margin-bottom: 100px;
   ${({ theme }) => theme.mediaQueries.xs} {
     width: 335px;
     align-items: center;
@@ -27,7 +24,6 @@ export const FlexContainer = styled.div`
     width: 1200px;
     align-items: flex-start;
     justify-content: space-between;
-    margin-bottom: 0px;
   }
 `;
 
@@ -35,12 +31,11 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   background-color: ${({ theme }) => (theme.isDark ? theme.colors.background : "rgba(77, 64, 64, 1)")};
-  border-top: 5px solid ${({ theme }) => theme.colors.white3};
+  border-top: 5px solid ${({ theme }) => theme.card.background};
   padding: 20px 20px 20px 20px;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  z-index: -1;
   ${({ theme }) => theme.mediaQueries.sm} {
     padding: 80px 50px 80px 50px;
   }
@@ -120,7 +115,8 @@ export const IconFlex = styled.div`
   }
 `;
 
-export const LinkskWrapper = styled(Flex)`
+export const LinkskWrapper = styled.div`
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
@@ -184,14 +180,23 @@ export const ButtonFlex = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  height: 100px;
-  justify-content: space-between;
+  height: 60px;
+  justify-content: flex-start;
   align-items: flex-end;
   margin-top: 10px;
   ${({ theme }) => theme.mediaQueries.sm} {
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-start;
     height: 60px;
+  }
+`;
+
+export const LinkText = styled(Text)`
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: white;
+  :hover {
+    text-decoration: underline;
   }
 `;
 
@@ -205,7 +210,8 @@ export const BottomRowContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  width: 100%;
+  align-items: space-between;
 `;
 
 export const BuyBananaButton = styled.button`
@@ -237,25 +243,8 @@ export const AllRightsReserved = styled(Text)`
   color: white;
   bottom: 10px;
   left: 20px;
-
   ${({ theme }) => theme.mediaQueries.sm} {
     bottom: 20px;
     left: auto;
   }
 `;
-
-const styles: Record<string, ThemeUIStyleObject> = {
-  allRightsReserved: {
-    color: "primaryBright",
-    position: "absolute",
-    bottom: ["10px", "20px"],
-    left: ["20px", "auto"],
-  },
-  linkText: {
-    "&:hover": {
-      textDecoration: "underline",
-    },
-  },
-};
-
-export default styles;

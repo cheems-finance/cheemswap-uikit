@@ -1,13 +1,12 @@
 import React from "react";
-import { LegacySvgProps } from "../../components/Svg";
+import { SvgProps } from "../../components/Svg";
 
 export type ActionHandler = () => void;
 
 export interface MarketingModalProps {
   title: string;
-  description?: string;
-  startEarning?: ActionHandler | undefined;
-  startEarningText?: string | undefined;
+  description: string;
+  startEarning: ActionHandler;
   onDismiss: ActionHandler;
   children: React.ReactNode | React.ReactNode[];
 }
@@ -18,5 +17,5 @@ export interface IconProps {
 }
 
 export interface ModalContentProps {
-  Icon?: LegacySvgProps;
+  Icon: SvgProps;
 }

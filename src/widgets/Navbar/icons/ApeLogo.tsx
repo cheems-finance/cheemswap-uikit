@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { LegacySvgProps } from "../../../components/Svg/types";
+import { SvgProps } from "../../../components/Svg/types";
 
-interface LogoProps extends LegacySvgProps {
+interface LogoProps extends SvgProps {
   isDark: boolean;
 }
 const StyledLogo = styled.h1`

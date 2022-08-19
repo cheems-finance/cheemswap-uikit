@@ -1,98 +1,50 @@
 import React from "react";
-import { Button as ThemeUIButton } from "theme-ui";
-import Icon from "../Svg/_Icons/AutoRenew";
-import { ButtonProps, variants, buttonFontSizes, buttonPadding, sizes } from "./types";
+import getExternalLinkProps from "../../util/getExternalLinkProps";
+import StyledButton from "./StyledButton";
+import { ButtonProps, variants, sizes } from "./types";
 
 const Button: React.FC<ButtonProps> = ({
-  variant = variants.PRIMARY,
-  size = sizes.MEDIUM,
-  load,
-  children,
   startIcon,
   endIcon,
-  fullWidth,
+  children,
+  external,
+  isLoading,
+  disabled,
+  fontFamily,
+  color,
   ...props
 }) => {
-  let hoverStyle = {
-    "&:hover": {
-      "&:not([disabled])": { borderColor: "#FFDA00", background: variant === "primary" && "#FFDA00" },
-      "&:disabled": {},
-    },
-  };
-  if (variant === "secondary") {
-    hoverStyle = {
-      "&:hover": {
-        "&:not([disabled])": hoverStyle["&:hover"]["&:not([disabled])"],
-        "&:disabled": { color: "secondaryButtonDisableColor", borderColor: "secondaryButtonDisable" },
-      },
-    };
-  }
-  if (variant === "tertiary") {
-    hoverStyle = {
-      "&:hover": {
-        "&:not([disabled])": {
-          borderColor: "primaryBtnDisable",
-          background: "white4",
-        },
-        "&:disabled": {},
-      },
-    };
-  }
-  if (variant === "success") {
-    hoverStyle = {
-      "&:hover": {
-        "&:not([disabled])": {
-          borderColor: "hoveredSuccess",
-          background: "hoveredSuccess",
-        },
-        "&:disabled": {},
-      },
-    };
-  }
-  if (variant === "danger") {
-    hoverStyle = {
-      "&:hover": {
-        "&:not([disabled])": {
-          borderColor: "hoveredDanger",
-          background: "hoveredDanger",
-        },
-        "&:disabled": {},
-      },
-    };
-  }
+  const internalProps = external ? getExternalLinkProps() : {};
+  const isDisabled = isLoading || disabled;
 
   return (
-    <ThemeUIButton
+    <StyledButton
+      {...internalProps}
       {...props}
-      variant={variant}
-      sx={{
-        variant: `buttons.${variant}`,
-        textTransform: "uppercase",
-        fontSize: buttonFontSizes[size],
-        px: buttonPadding[size].x,
-        py: buttonPadding[size].y,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        transition: "all .3s linear",
-        "&:active": {
-          transform: "scale(0.9)",
-        },
-        ...hoverStyle,
-        width: fullWidth ? "100%" : "max-content",
-      }}
+      isLoading={isLoading}
+      disabled={isDisabled}
+      fontFamily={fontFamily}
+      color={color}
     >
       {React.isValidElement(startIcon) &&
         React.cloneElement(startIcon, {
           mr: "0.5rem",
         })}
-      {children} {load && <Icon color="currentColor" ml="5px" spin />}
+      {children}
       {React.isValidElement(endIcon) &&
         React.cloneElement(endIcon, {
           ml: "0.5rem",
         })}
-    </ThemeUIButton>
+    </StyledButton>
   );
+};
+
+Button.defaultProps = {
+  variant: variants.PRIMARY,
+  size: sizes.MD,
+  external: false,
+  isLoading: false,
+  disabled: false,
 };
 
 export default Button;

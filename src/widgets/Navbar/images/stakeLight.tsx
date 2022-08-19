@@ -1,9 +1,10 @@
 import React from "react";
-import { LegacySvgProps } from "../../..";
+import Svg from "../../../components/Svg/Svg";
+import { SvgProps } from "../../..";
 
-const Image: React.FC<LegacySvgProps> = () => {
+const Image: React.FC<SvgProps> = () => {
   return (
-    <svg
+    <Svg
       width="229"
       height="302"
       viewBox="0 0 229 302"
@@ -2094,7 +2095,7 @@ const Image: React.FC<LegacySvgProps> = () => {
           <rect width="228.6" height="301.8" fill="white" />
         </clipPath>
       </defs>
-    </svg>
+    </Svg>
   );
 };
 

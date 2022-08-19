@@ -1,4 +1,3 @@
-/** @jsxImportSource theme-ui */
 import React from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
@@ -9,14 +8,7 @@ import { DiscordIcon, TelegramIcon, TwitterIcon } from "./icons";
 import { LinkLabel, MenuEntry } from "./MenuEntry";
 import MenuLink from "./MenuLink";
 import NetworkButton from "./NetworkButton";
-import { LiveResultProps, PanelProps, PushedProps } from "./types";
-import Text from "../../components/Text/Text";
-import Tag from "../../components/Tag/Tag";
-import Flex from "../../components/Flex/Flex";
-import trackClick, { TrackHandler } from "../../util/trackClick";
-import styles from "./styles";
-import LangSelectorButton from "../../components/LangSelectorButton/LangSelectorButton";
-import { RunFiatButton } from "../../components/RunFiatButton";
+import { PanelProps, PushedProps } from "./types";
 
 interface MobileNavMenuProps extends PanelProps, PushedProps {
   isMobile: boolean;
@@ -24,10 +16,6 @@ interface MobileNavMenuProps extends PanelProps, PushedProps {
   showMenu: boolean;
   chainId: number;
   switchNetwork: (chainId: number) => void;
-  track?: TrackHandler;
-  liveResult?: LiveResultProps["apiResult"];
-  t: (key: string) => string;
-  runFiat: () => void;
 }
 
 const StyledLink = styled.a`
@@ -46,7 +34,7 @@ const Wrapper = styled.div<{ isPushed: boolean; showMenu: boolean }>`
   justify-content: space-between;
   flex-grow: 100px;
   max-height: ${({ isPushed }) => (isPushed ? "100vh" : "0px")};
-  background-color: ${({ theme }) => theme.colors.navbar};
+  background-color: ${({ theme }) => theme.nav.background};
   width: ${({ isPushed }) => `${isPushed ? "100" : "0"}%`};
   border-right: ${({ isPushed }) => (isPushed ? "2px solid rgba(133, 133, 133, 0.1)" : 0)};
   z-index: 11;
@@ -67,19 +55,6 @@ const Wrapper = styled.div<{ isPushed: boolean; showMenu: boolean }>`
   }
 `;
 
-const NewMenuLink = styled(MenuLink)`
-  display: flex;
-  align-items: center;
-`;
-const StyledTag = styled(Tag)`
-  font-size: 10px;
-  padding: 0px 6px !important;
-  font-weight: 500;
-  border: none;
-  border-radius: 10px;
-  height: auto;
-`;
-
 const MobileNavMenu: React.FC<MobileNavMenuProps> = ({
   isPushed,
   showMenu,
@@ -89,27 +64,14 @@ const MobileNavMenu: React.FC<MobileNavMenuProps> = ({
   pushNav,
   chainId,
   switchNetwork,
-  setLang,
-  currentLang,
-  langs,
-  track,
-  liveResult,
-  t,
-  runFiat,
 }) => {
   const iconFillColor = isDark ? darkTheme.colors.text : lightTheme.colors.text;
   const handleClick = isMobile ? () => pushNav(false) : undefined;
   const location = useLocation();
-
-  const position = "More";
-  const event = "socialClick";
-
   return (
     <Wrapper isPushed={isPushed} showMenu={showMenu}>
       {links.map((entry) => {
         const calloutClass = entry.calloutClass ? entry.calloutClass : undefined;
-        const found = liveResult?.find((result) => result.label === entry.label);
-
         if (entry.items) {
           return (
             <Accordion
@@ -119,49 +81,13 @@ const MobileNavMenu: React.FC<MobileNavMenuProps> = ({
               label={entry.label}
               initialOpenState={entry.initialOpenState}
               className={calloutClass}
-              found={found}
             >
               {isPushed &&
-                entry.items.map((item) => {
-                  const subMenu = found?.settings?.find((menu) => menu.navItem === item.label);
-                  return (
-                    <MenuEntry
-                      key={item.href}
-                      secondary
-                      isActive={item.href === location.pathname}
-                      onClick={handleClick}
-                    >
-                      <NewMenuLink href={item.href}>
-                        <Text
-                          sx={{
-                            ...styles.dropDownMenuText,
-                            "&&&": {
-                              background:
-                                item.label === "GNANA" && "linear-gradient(53.53deg, #A16552 15.88%, #E1B242 92.56%)",
-                              WebkitBackgroundClip: item.label === "GNANA" && "text",
-                              backgroundClip: item.label === "GNANA" && "text",
-                              WebkitTextFillColor: item.label === "GNANA" && "transparent",
-                              textFillColor: item.label === "GNANA" && "transparent",
-                            },
-                            "&:hover": {
-                              boxShadow: `0px 2px 0px ${iconFillColor}`,
-                            },
-                          }}
-                          weight={700}
-                          size="16px"
-                          label={item.label}
-                        >
-                          {item.label}
-                        </Text>
-                        {(item?.isNew || subMenu?.tag === "LIVE") && (
-                          <StyledTag variant={subMenu?.tag === "LIVE" ? "success" : "binance"}>
-                            {subMenu?.tag === "LIVE" ? "LIVE" : "NEW"}
-                          </StyledTag>
-                        )}
-                      </NewMenuLink>
-                    </MenuEntry>
-                  );
-                })}
+                entry.items.map((item) => (
+                  <MenuEntry key={item.href} secondary isActive={item.href === location.pathname} onClick={handleClick}>
+                    <MenuLink href={item.href}>{item.label}</MenuLink>
+                  </MenuEntry>
+                ))}
             </Accordion>
           );
         }
@@ -172,7 +98,7 @@ const MobileNavMenu: React.FC<MobileNavMenuProps> = ({
             isActive={entry.href === location.pathname}
             onClick={handleClick}
           >
-            <MenuLink href={entry.href} target={entry.label === "Lend" ? "_blank" : "_self"}>
+            <MenuLink href={entry?.href}>
               <LinkLabel isPushed={isPushed}>{entry.label}</LinkLabel>
             </MenuLink>
           </MenuEntry>
@@ -184,72 +110,32 @@ const MobileNavMenu: React.FC<MobileNavMenuProps> = ({
           justifyContent: "center",
           alignItems: "center",
           width: "100%",
-          height: "120px",
+          height: "100px",
           padding: "20px 0",
         }}
       >
-        <Flex
-          sx={{
-            flexDirection: "column-reverse",
-            justifyContent: "space-evenly",
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
             alignItems: "center",
-            width: "90%",
+            width: "275px",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-evenly",
-              width: "200px",
-            }}
-          >
-            <StyledLink href="https://twitter.com/ape_swap" target="_blank" rel="noopener noreferrer">
-              <TwitterIcon
-                color="white3"
-                fill={iconFillColor}
-                onClick={() => trackClick(track, event, position, chainId, "twitter", "https://twitter.com/ape_swap")}
-              />
-            </StyledLink>
-            <StyledLink href="https://t.me/ape_swap" target="_blank" rel="noopener noreferrer">
-              <TelegramIcon
-                color="white3"
-                fill={iconFillColor}
-                onClick={() => trackClick(track, event, position, chainId, "telegram", "https://t.me/ape_swap")}
-              />
-            </StyledLink>
-            <StyledLink href="https://t.me/ape_swap" target="_blank" rel="noopener noreferrer">
-              <DiscordIcon
-                color="white3"
-                fill={iconFillColor}
-                onClick={() =>
-                  trackClick(track, event, position, chainId, "discord", "https://discord.com/invite/ApeSwap")
-                }
-              />
-            </StyledLink>
-          </div>
-          <Flex sx={{ marginBottom: "15px" }}>
-            <LangSelectorButton currentLang={currentLang} langs={langs} setLang={setLang} t={t} />
-            <RunFiatButton
-              mini
-              runFiat={runFiat}
-              t={t}
-              sx={{ width: "30px" }}
-              track={track}
-              position="NavBar"
-              chainId={chainId}
-            />
-            <NetworkButton chainId={chainId} switchNetwork={switchNetwork} t={t} />
-          </Flex>
-        </Flex>
+          <StyledLink href="https://twitter.com/ape_swap" target="_blank" rel="noopener noreferrer">
+            <TwitterIcon color="white3" fill={iconFillColor} />
+          </StyledLink>
+          <StyledLink href="https://discord.com/invite/ApeSwap" target="_blank" rel="noopener noreferrer">
+            <TelegramIcon color="white3" fill={iconFillColor} />
+          </StyledLink>
+          <StyledLink href="https://t.me/ape_swap" target="_blank" rel="noopener noreferrer">
+            <DiscordIcon color="white3" fill={iconFillColor} />
+          </StyledLink>
+          <NetworkButton chainId={chainId} switchNetwork={switchNetwork} />
+        </div>
       </div>
     </Wrapper>
   );
-};
-
-MobileNavMenu.defaultProps = {
-  track: undefined,
-  liveResult: undefined,
 };
 
 export default MobileNavMenu;

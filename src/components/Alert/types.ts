@@ -1,31 +1,21 @@
-export enum variants {
-  ERROR = "error",
-  DANGER = "danger",
-  SUCCESS = "success",
-  INFO = "info",
-}
+import { MouseEvent, ReactNode } from "react";
 
-export enum sizes {
-  SMALL = "sm",
-  MEDIUM = "md",
-  LARGE = "lg",
-}
-
-export const alertFontSizes = {
-  [sizes.SMALL]: 1,
-  [sizes.MEDIUM]: 2,
-  [sizes.LARGE]: 4,
+export type AlertTheme = {
+  background: string;
 };
 
-export type sizeProps = `${sizes}`;
-export type variantProps = `${variants}`;
+export const variants = {
+  INFO: "info",
+  DANGER: "danger",
+  SUCCESS: "success",
+  WARNING: "warning",
+} as const;
+
+export type Variants = typeof variants[keyof typeof variants];
 
 export interface AlertProps {
-  variant?: variantProps;
-  text?: string;
-  linkText?: string;
-  url?: string;
-  size?: sizeProps;
-  onClose?: () => void;
-  sx?: any;
+  variant?: Variants;
+  title: string;
+  children?: ReactNode;
+  onClick?: (evt: MouseEvent<HTMLButtonElement>) => void;
 }

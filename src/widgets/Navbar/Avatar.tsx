@@ -43,7 +43,6 @@ const Avatar: React.FC<AvatarProps> = ({ profile }) => {
   const link = profile.name ? profileLink : noProfileLink;
   const isExternal = link.startsWith("http");
   const ariaLabel = "Link to profile";
-  // eslint-disable-next-line no-nested-ternary
   const icon = image ? (
     <AvatarImage image={image} />
   ) : !isDark ? (

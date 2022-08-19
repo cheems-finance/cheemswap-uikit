@@ -16,6 +16,5 @@
     "jsx": "react"
   },
   "include": ["src"],
-  "exclude": ["node_modules", "src/**/*.stories.tsx", "src/__tests__/**/*"],
-  "jsxImportSource": "theme-ui"
+  "exclude": ["node_modules", "src/**/*.stories.tsx", "src/__tests__/**/*"]
 }

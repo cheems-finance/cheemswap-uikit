@@ -5,19 +5,23 @@ export const supportLinks = [
   },
   {
     label: "Tokenomics",
-    href: "https://cheemswap.gitbook.io/",
-  }
+    href: "https://cheemswap.gitbook.io/cheemswap-finance/product-and-features/cheemswaps-tokens/cheems",
+  },
+  {
+    label: "Audits",
+    href: "https://cheemswap.gitbook.io/cheemswap-finance/where-dev/security/audits",
+  },
 ];
 
 export const engageLinks = [
   {
     label: "Governance",
-    href: "https://cheemswap.gitbook.io/",
+    href: "https://cheemswap.gitbook.io/cheemswap-finance/governance",
   },
   {
     label: "Partner Application",
-    href: "https://cheemswap.gitbook.io",
-  }
+    href: "https://docs.google.com/forms/",
+  },
 ];
 
 export const learnLinks = [
@@ -28,5 +32,5 @@ export const learnLinks = [
   {
     label: "Github",
     href: "https://github.com/cheemswap/",
-  }
+  },
 ];

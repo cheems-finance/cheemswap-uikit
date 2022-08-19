@@ -1,5 +1,5 @@
 {
-  "extends": "@pepedoge/eslint-config-pepeswap",
+  "extends": "@cheemswap/eslint-config-cheemswap",
   "rules": {
     "import/no-extraneous-dependencies": [
       "error",
@@ -11,7 +11,6 @@
           "rollup.config.js"
         ]
       }
-    ],
-    "no-nested-ternary": 0
+    ]
   }
 }

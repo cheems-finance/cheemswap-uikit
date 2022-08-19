@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from "styled-components";
 import { space } from "styled-system";
 import getThemeValue from "../../../util/getThemeValue";
-import { LegacySvgProps } from "../../../components/Svg/types";
+import { SvgProps } from "./types";
 
 const rotate = keyframes`
   from {
@@ -16,7 +16,7 @@ const spinStyle = css`
   animation: ${rotate} 2s linear infinite;
 `;
 
-const Svg = styled.svg<LegacySvgProps>`
+const Svg = styled.svg<SvgProps>`
   fill: ${({ theme, color }) => getThemeValue(`colors.${color}`, color)(theme)};
   flex-shrink: 0;
 

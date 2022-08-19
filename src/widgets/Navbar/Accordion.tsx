@@ -2,16 +2,14 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { MENU_ENTRY_HEIGHT } from "./config";
 import { MenuEntry, LinkLabel } from "./MenuEntry";
-import { PushedProps, LiveResultProps } from "./types";
+import { PushedProps } from "./types";
 import { ArrowDropUpSmallIcon, ArrowDropDownSmallIcon } from "../../components/Svg";
-import { GlowCircle } from "../../components/GlowCircle";
 
 interface Props extends PushedProps {
   label: string;
   icon?: React.ReactElement;
   initialOpenState?: boolean;
   className?: string;
-  found?: LiveResultProps["apiResult"][0];
 }
 
 const Container = styled.div`
@@ -30,13 +28,6 @@ const AccordionContent = styled.div<{ isOpen: boolean; isPushed: boolean; maxHei
   border-width: 1px;
 `;
 
-const LabelSection = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: flex-start;
-`;
-
 const Accordion: React.FC<Props> = ({
   label,
   icon,
@@ -45,7 +36,6 @@ const Accordion: React.FC<Props> = ({
   initialOpenState = false,
   children,
   className,
-  found,
 }) => {
   const [isOpen, setIsOpen] = useState(initialOpenState);
 
@@ -62,11 +52,7 @@ const Accordion: React.FC<Props> = ({
     <Container>
       <MenuEntry onClick={handleClick} className={className}>
         {icon}
-        <LabelSection>
-          <LinkLabel isPushed={isPushed}>{label}</LinkLabel>
-          {label === "Raise" && found?.label === label && found?.settings[0]?.tag === "LIVE" && <GlowCircle />}
-        </LabelSection>
-
+        <LinkLabel isPushed={isPushed}>{label}</LinkLabel>
         {isOpen ? <ArrowDropUpSmallIcon /> : <ArrowDropDownSmallIcon />}
       </MenuEntry>
       <AccordionContent
@@ -84,7 +70,6 @@ Accordion.defaultProps = {
   initialOpenState: false,
   className: "",
   icon: <></>,
-  found: undefined,
 };
 
 export default Accordion;

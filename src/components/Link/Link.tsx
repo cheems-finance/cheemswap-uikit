@@ -3,36 +3,24 @@ import styled from "styled-components";
 import getExternalLinkProps from "../../util/getExternalLinkProps";
 import Text from "../Text/Text";
 import { LinkProps } from "./types";
-import LinkExternal from "./LinkExternal";
 
 const StyledLink = styled(Text)<LinkProps>`
+  font-weight: ${({ bold, fontWeight }) => (bold ? 600 : fontWeight)};
   display: flex;
   align-items: center;
   width: fit-content;
-  cursor: pointer;
   &:hover {
     text-decoration: underline;
   }
 `;
 
-const Link: React.FC<LinkProps> = ({ external, children, ...props }) => {
+const Link: React.FC<LinkProps> = ({ external, ...props }) => {
   const internalProps = external ? getExternalLinkProps() : {};
-  if (external) {
-    return (
-      <LinkExternal {...internalProps} {...props}>
-        {children}
-      </LinkExternal>
-    );
-  }
-  return (
-    <StyledLink as="a" bold {...internalProps} {...props}>
-      {children}
-    </StyledLink>
-  );
+  return <StyledLink as="a" {...internalProps} {...props} />;
 };
 
 Link.defaultProps = {
-  color: "primary",
+  color: "text",
 };
 
 export default Link;

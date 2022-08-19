@@ -1,21 +1,19 @@
-import { BoxProps } from "theme-ui";
+import { LayoutProps, SpaceProps } from "styled-system";
 
-export enum animation {
-  WAVES = "waves",
-  PULSE = "pulse",
-}
+export const animation = {
+  WAVES: "waves",
+  PULSE: "pulse",
+} as const;
 
-export enum variant {
-  RECT = "rect",
-  CIRCLE = "circle",
-}
+export const variant = {
+  RECT: "rect",
+  CIRCLE: "circle",
+} as const;
 
-type Animation = `${animation}`;
-type Variant = `${variant}`;
+export type Animation = typeof animation[keyof typeof animation];
+export type Variant = typeof variant[keyof typeof variant];
 
-export interface SkeletonProps extends BoxProps {
+export interface SkeletonProps extends SpaceProps, LayoutProps {
   animation?: Animation;
   variant?: Variant;
-  width?: string | number;
-  height?: string | number;
 }

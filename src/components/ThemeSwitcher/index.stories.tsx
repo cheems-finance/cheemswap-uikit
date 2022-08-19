@@ -15,18 +15,7 @@ export const Default: React.FC = () => {
 
   return (
     <div>
-      <ThemeSwitcher isDark={false} toggleTheme={toggleTheme} isMini={false} />
-    </div>
-  );
-};
-
-export const Mini: React.FC = () => {
-  // toggleTheme => comes from parent comp, modifies theme state in frontend
-  // setNewDark => internal, modifies button theme state in UIKit
-
-  return (
-    <div>
-      <ThemeSwitcher isDark={false} toggleTheme={toggleTheme} isMini />
+      <ThemeSwitcher isDark={false} toggleTheme={toggleTheme} />
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import React from "react";
 import { ApeSwapIcon } from "../Svg";
 import { Link, LinkExternal } from "./index";
-import StorybookLayout from "../StorybookLayout/StorybookLayout";
 
 export default {
   title: "Components/Link",
@@ -17,21 +16,22 @@ export default {
         type: null,
       },
     },
-    colorMode: {
-      options: ["light", "dark"],
-      control: { type: "inline-radio" },
-    },
   },
 };
 
-export const Default = (args: any) => {
+export const Default: React.FC = () => {
   return (
-    <StorybookLayout {...args}>
+    <div>
       <div>
         <Link href="/">Default</Link>
       </div>
       <div>
-        <Link href="/" color="red">
+        <Link href="/" bold>
+          Bold Link
+        </Link>
+      </div>
+      <div>
+        <Link href="/" color="success">
           Custom color
         </Link>
       </div>
@@ -46,14 +46,14 @@ export const Default = (args: any) => {
           <ApeSwapIcon />
         </Link>
       </div>
-    </StorybookLayout>
+      <div>
+        <LinkExternal href="/">Link External</LinkExternal>
+      </div>
+      <div>
+        <LinkExternal href="/" bold>
+          Bold Link External
+        </LinkExternal>
+      </div>
+    </div>
   );
 };
-
-export const External = (args: any) => (
-  <StorybookLayout {...args}>
-    <Link external href="/">
-      Link External
-    </Link>
-  </StorybookLayout>
-);

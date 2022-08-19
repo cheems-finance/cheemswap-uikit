@@ -1,14 +1,13 @@
 import React from "react";
-import LegacySvg from "../../../components/Svg/LegacySvg";
-import { LegacySvgProps } from "../../../components/Svg/types";
+import { SvgProps } from "../../../components/Svg/types";
 
-interface LogoProps extends LegacySvgProps {
+interface LogoProps extends SvgProps {
   isDark: boolean;
 }
 
 const Logo: React.FC<LogoProps> = () => {
   return (
-    <LegacySvg height="30px" viewBox="0 0 512 512" id="Capa_1" overflow="hidden">
+    <svg height="30px" viewBox="0 0 512 512" id="Capa_1" overflow="hidden">
       <circle cx="66.06" cy="222.97" r="66.06" fill="#965A50" />
       <circle cx="66.06" cy="222.97" r="41.29" fill="#EBC9A0" />
       <circle cx="445.94" cy="222.97" r="66.06" fill="#965A50" />
@@ -84,7 +83,7 @@ const Logo: React.FC<LogoProps> = () => {
       <g />
       <g />
       <g />
-    </LegacySvg>
+    </svg>
   );
 };
 

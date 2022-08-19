@@ -1,8 +1,11 @@
-import React from "react";
-import { Flex as ThemeUIFlex } from "theme-ui";
+import styled from "styled-components";
+import { flexbox, space } from "styled-system";
+import { FlexProps } from "./types";
 
-const Flex: React.FC<any> = ({ children, ...props }) => {
-  return <ThemeUIFlex {...props}>{children}</ThemeUIFlex>;
-};
+const Flex = styled.div<FlexProps>`
+  display: flex;
+  ${flexbox}
+  ${space}
+`;
 
 export default Flex;

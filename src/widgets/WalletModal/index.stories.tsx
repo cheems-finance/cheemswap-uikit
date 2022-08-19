@@ -1,42 +1,23 @@
-/** @jsxImportSource theme-ui */
 import React from "react";
 import Button from "../../components/Button/Button";
 import Flex from "../../components/Flex/Flex";
-import StorybookLayout from "../../components/StorybookLayout/StorybookLayout";
 import useWalletModal from "./useWalletModal";
 
 export default {
   title: "Widgets/WalletModal",
-  argTypes: {
-    argTypes: {
-      colorMode: {
-        options: ["light", "dark"],
-        control: { type: "inline-radio" },
-      },
-    },
-  },
+  argTypes: {},
 };
 
-const translate: (key: string) => string = (key) => key;
-
-export const Wallet = (args: any) => {
+export const Wallet: React.FC = () => {
   const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(
     () => null,
     () => null,
-    translate,
-    "0xbdda50183d817c3289f895a4472eb475967dc980",
-    "babadrape64.wallet"
+    "0xbdda50183d817c3289f895a4472eb475967dc980"
   );
   return (
-    <StorybookLayout {...args}>
-      <Flex>
-        <Button onClick={onPresentConnectModal}>Open connect modal</Button>
-        <Button onClick={onPresentAccountModal}>Open account modal</Button>
-      </Flex>
-    </StorybookLayout>
+    <Flex>
+      <Button onClick={onPresentConnectModal}>Open connect modal</Button>
+      <Button onClick={onPresentAccountModal}>Open account modal</Button>
+    </Flex>
   );
-};
-
-Wallet.args = {
-  colorMode: "light",
 };

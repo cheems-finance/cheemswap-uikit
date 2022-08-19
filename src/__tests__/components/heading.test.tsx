@@ -1,16 +1,17 @@
 import React from "react";
 import { renderWithTheme } from "../../testHelpers";
-import { Heading } from "../../components/Heading";
+import Heading from "../../components/Heading/Heading";
 
 it("renders correctly", () => {
-  const { asFragment } = renderWithTheme(<Heading as="h1">Heading</Heading>);
+  const { asFragment } = renderWithTheme(<Heading>Title</Heading>);
   expect(asFragment()).toMatchInlineSnapshot(`
     <DocumentFragment>
-      <h1
-        class="css-1k7yu1x"
+      <h2
+        class="sc-bdvvtL sc-gsDKAQ gCVxTz kYqRTB"
+        color="text"
       >
-        Heading
-      </h1>
+        Title
+      </h2>
     </DocumentFragment>
   `);
 });

@@ -4,7 +4,7 @@ import { MarketingModalProps, MarketingModal } from ".";
 import { Connected } from "../Navbar/index.stories";
 import { Text } from "../../components/Text";
 import ModalContent from "./ModalContent";
-import { LendingM1Icon, LendingM2Icon } from "../../components/Svg";
+import { LendingM1Icon, LendingM2Icon } from "../../components/Svg/index";
 
 export default {
   title: "Widgets/MarketingModal",
@@ -63,7 +63,6 @@ export const ModalWithBackgroundMenu: React.FC<MarketingModalProps> = ({
   title = "Welcome to ApeSwap's Lending Network",
   description = "How does it work?",
   startEarning,
-  startEarningText = "Buy Bills",
 }) => {
   const [visible, setVisible] = useState(true);
   const family = [<LendingBody1 />, <LendingBody2 />];
@@ -75,7 +74,6 @@ export const ModalWithBackgroundMenu: React.FC<MarketingModalProps> = ({
           title={title}
           description={description}
           startEarning={startEarning}
-          startEarningText={startEarningText}
           onDismiss={() => setVisible(false)}
         >
           {family}

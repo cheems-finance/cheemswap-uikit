@@ -1,71 +1,82 @@
-/** @jsxImportSource theme-ui */
 import React from "react";
+import styled from "styled-components";
 import { useMatchBreakpoints } from "../../hooks";
 import Button from "../../components/Button/Button";
-import { useWalletModal, Login } from "../WalletModal";
-import { dynamicStyles } from "./styles";
-import { Text } from "../../components/Text";
+import { useWalletModal } from "../WalletModal";
+import { Login } from "../WalletModal/types";
 
 interface Props {
-  account?: string | undefined;
-  uDName?: string | undefined;
+  account?: string;
   login: Login;
   logout: () => void;
-  t: (key: string) => string;
 }
 
-const UserBlock: React.FC<Props> = ({ uDName, account, login, logout, t }) => {
-  const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, t, account, uDName);
+const StyledButton = styled(Button)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  margin-left: 10px;
+  background-color: ${({ theme }) => theme.colors.white3};
+  border-radius: 10px;
+  line-height: 10px;
+  padding: 0px 45px 0px 15px;
+  :focus {
+    box-shadow: none !important;
+  }
+`;
+
+const UserBlock: React.FC<Props> = ({ account, login, logout }) => {
+  const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account);
   const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
   const { isXs } = useMatchBreakpoints();
 
-  const buttonStyle = dynamicStyles.userBlockBtn({ account, uDName });
-
   const loadButton = () => {
-    if (uDName || account) {
+    if (account) {
       if (isXs) {
         return (
-          <Button
+          <StyledButton
             size="sm"
             fontSize="14px"
+            color="text"
+            fontFamily="poppins"
             variant="tertiary"
-            sx={buttonStyle}
             onClick={() => {
               onPresentAccountModal();
             }}
-            account={uDName || account}
           >
-            <Text weight="normal">{uDName || accountEllipsis}</Text>
-          </Button>
+            {accountEllipsis}
+          </StyledButton>
         );
       }
       return (
-        <Button
+        <StyledButton
           size="sm"
           variant="tertiary"
           fontSize="14px"
-          sx={buttonStyle}
+          color="text"
+          fontFamily="poppins"
           onClick={() => {
             onPresentAccountModal();
           }}
-          account={uDName || account}
         >
-          <Text weight="normal">{uDName || accountEllipsis}</Text>
-        </Button>
+          {accountEllipsis}
+        </StyledButton>
       );
     }
     return (
-      <Button
-        size="sm"
-        variant="primary"
+      <StyledButton
+        size="md"
+        fontFamily="poppins"
+        variant="tertiary"
+        color="text"
         fontSize="16px"
         onClick={() => {
           onPresentConnectModal();
         }}
-        account={uDName || account}
       >
-        {t("Connect")}
-      </Button>
+        Connect
+      </StyledButton>
     );
   };
 
@@ -74,7 +85,6 @@ const UserBlock: React.FC<Props> = ({ uDName, account, login, logout, t }) => {
 
 UserBlock.defaultProps = {
   account: "",
-  uDName: "",
 };
 
 export default UserBlock;

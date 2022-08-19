@@ -1,11 +1,11 @@
 import React from "react";
-import LegacySvg from "../../../components/Svg/LegacySvg";
-import { LegacySvgProps } from "../../../components/Svg/types";
+import Svg from "./Svg";
+import { SvgProps } from "./types";
 
-const Icon: React.FC<LegacySvgProps> = (props) => {
+const Icon: React.FC<SvgProps> = (props) => {
   const { fill } = props;
   return (
-    <LegacySvg width="40" height="40" viewBox="0 0 40 40" {...props}>
+    <Svg width="40" height="40" viewBox="0 0 40 40" {...props}>
       <rect width="40" height="40" rx="10" />
       <g clipPath="url(#clip0_8685_37440)">
         <path
@@ -18,7 +18,7 @@ const Icon: React.FC<LegacySvgProps> = (props) => {
           <rect width="26" height="26" fill="white" transform="translate(7 7)" />
         </clipPath>
       </defs>
-    </LegacySvg>
+    </Svg>
   );
 };
 

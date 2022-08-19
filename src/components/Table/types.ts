@@ -140,18 +140,3 @@ export type TableAction<T extends DataType> =
   | { type: "NEXT_PAGE" }
   | { type: "PREV_PAGE" }
   | { type: "TOGGLE_ALL" };
-
-export interface TableRowProps {
-  textAlign?: "left" | "center" | "right";
-  sx?: any;
-}
-
-export interface TableHeadProps {
-  width?: string | number;
-  sx?: any;
-}
-
-export interface TableBodyProps {
-  borderRadius?: number;
-  sx?: any;
-}

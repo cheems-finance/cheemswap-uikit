@@ -1,37 +1,50 @@
-/** @jsxImportSource theme-ui */
 import React from "react";
-import { ArrowDropDownIcon } from "../../components/Svg";
+import styled from "styled-components";
+import { ArrowDropDownIcon } from "./icons";
+import Button from "../../components/Button/Button";
 import { useNetworkModal, SwitchNetwork } from "../NetworkModal";
-import { NETWORK_ICON, NETWORK_LABEL } from "../NetworkModal/config";
-import { Button } from "../../components/Button";
-import { Text } from "../../components/Text";
-import styles from "./styles";
+import { ChainId, NETWORK_LABEL } from "../NetworkModal/config";
+import DogeChain from "../NetworkModal/icons/DogeChain";
 
 interface Props {
   chainId: number;
   switchNetwork: SwitchNetwork;
-  t: (key: string) => string;
 }
 
-const NetworkButton: React.FC<Props> = ({ chainId, switchNetwork, t }) => {
-  const { onPresentNetworkModal } = useNetworkModal(switchNetwork, chainId, t);
-  const Icon = NETWORK_ICON[chainId];
+const StyledButton = styled(Button)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 35px;
+  background-color: ${({ theme }) => theme.colors.white3};
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 10px;
+  padding: 0px 15px 0px 10px;
+  :focus {
+    box-shadow: none !important;
+  }
+`;
+
+export const NETWORK_ICON: { [key: number]: any } = {
+  [ChainId.DOGECHAIN]: <DogeChain width="23px" mr="8px" />,
+  [ChainId.DOGECHAIN_TESTNET]: <DogeChain width="23px" mr="8px" />,
+};
+
+const NetworkButton: React.FC<Props> = ({ chainId, switchNetwork }) => {
+  const { onPresentNetworkModal } = useNetworkModal(switchNetwork, chainId);
 
   return (
-    <Button
-      sx={styles.networkBtn}
+    <StyledButton
+      size="sm"
       variant="tertiary"
+      color="text"
       onClick={() => {
         onPresentNetworkModal();
       }}
     >
-      <Icon />
-      <span style={{ margin: "0px 4px" }} />
-      <Text color="text" variant="sm" weight="normal">
-        {NETWORK_LABEL[chainId]}
-      </Text>
-      <ArrowDropDownIcon width="10px" ml="8px" />
-    </Button>
+      {NETWORK_ICON[chainId]} {NETWORK_LABEL[chainId]} <ArrowDropDownIcon width="10px" ml="8px" />
+    </StyledButton>
   );
 };
 

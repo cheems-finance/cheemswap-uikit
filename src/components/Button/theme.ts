@@ -1,7 +1,7 @@
 import { ButtonTheme, variants } from "./types";
 import { lightColors, darkColors } from "../../theme/colors";
 
-const { PRIMARY, SECONDARY, TERTIARY, TEXT, SUCCESS, DANGER } = variants;
+const { PRIMARY, SECONDARY, TEXT, DANGER, SUCCESS, YELLOW, SUBTLE, TERTIARY } = variants;
 
 export const light: ButtonTheme = {
   [PRIMARY]: {
@@ -24,16 +24,6 @@ export const light: ButtonTheme = {
     boxShadowActive: "none",
     color: lightColors.text,
   },
-  [TERTIARY]: {
-    background: lightColors.white4,
-    backgroundActive: lightColors.white4,
-    backgroundHover: lightColors.white4,
-    border: 0,
-    borderColorHover: "currentColor",
-    boxShadow: "none",
-    boxShadowActive: "none",
-    color: lightColors.text,
-  },
   [TEXT]: {
     background: "transparent",
     backgroundActive: "transparent",
@@ -43,6 +33,16 @@ export const light: ButtonTheme = {
     boxShadow: "none",
     boxShadowActive: "none",
     color: lightColors.text,
+  },
+  [DANGER]: {
+    background: lightColors.error,
+    backgroundActive: lightColors.error,
+    backgroundHover: lightColors.error,
+    border: 0,
+    borderColorHover: "currentColor",
+    boxShadow: "none",
+    boxShadowActive: "none",
+    color: lightColors.primaryBright,
   },
   [SUCCESS]: {
     background: lightColors.success,
@@ -54,10 +54,30 @@ export const light: ButtonTheme = {
     boxShadowActive: "none",
     color: lightColors.primaryBright,
   },
-  [DANGER]: {
-    background: lightColors.error,
-    backgroundActive: lightColors.error,
-    backgroundHover: lightColors.error,
+  [YELLOW]: {
+    background: lightColors.yellow,
+    backgroundActive: lightColors.yellow,
+    backgroundHover: lightColors.yellow,
+    border: 0,
+    borderColorHover: "currentColor",
+    boxShadow: "none",
+    boxShadowActive: "none",
+    color: lightColors.primaryBright,
+  },
+  [TERTIARY]: {
+    background: lightColors.white4,
+    backgroundActive: lightColors.white4,
+    backgroundHover: lightColors.white4,
+    border: 0,
+    borderColorHover: "currentColor",
+    boxShadow: "none",
+    boxShadowActive: "none",
+    color: lightColors.text,
+  },
+  [SUBTLE]: {
+    background: lightColors.gray,
+    backgroundActive: lightColors.gray,
+    backgroundHover: lightColors.gray,
     border: 0,
     borderColorHover: "currentColor",
     boxShadow: "none",
@@ -77,6 +97,19 @@ export const dark: ButtonTheme = {
     border: `2px solid ${darkColors.yellow}`,
     color: darkColors.yellow,
   },
+  [TEXT]: {
+    ...light.text,
+    color: darkColors.text,
+  },
+  [DANGER]: {
+    ...light.danger,
+  },
+  [SUCCESS]: {
+    ...light.success,
+  },
+  [YELLOW]: {
+    ...light.yellow,
+  },
   [TERTIARY]: {
     ...light.tertiary,
     background: darkColors.white4,
@@ -84,14 +117,7 @@ export const dark: ButtonTheme = {
     backgroundHover: darkColors.white4,
     color: darkColors.text,
   },
-  [TEXT]: {
-    ...light.text,
-    color: darkColors.text,
-  },
-  [SUCCESS]: {
-    ...light.success,
-  },
-  [DANGER]: {
-    ...light.danger,
+  [SUBTLE]: {
+    ...light.subtle,
   },
 };

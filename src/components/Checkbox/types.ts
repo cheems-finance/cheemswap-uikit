@@ -1,14 +1,10 @@
-import { InputHTMLAttributes } from "react";
-import { ThemeUICSSObject } from "theme-ui";
+export const scales = {
+  SM: "sm",
+  MD: "md",
+} as const;
 
-export enum scales {
-  SM = "sm",
-  MD = "md",
-}
+export type Scales = typeof scales[keyof typeof scales];
 
-export type scaleProps = `${scales}`;
-
-export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
-  scale?: scaleProps;
-  display?: ThemeUICSSObject["display"];
+export interface CheckboxProps {
+  scale?: Scales;
 }
