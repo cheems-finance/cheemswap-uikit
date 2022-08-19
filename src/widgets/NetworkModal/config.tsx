@@ -13,7 +13,7 @@ export const NETWORK_ICON: { [key: number]: any } = {
 
 export const NETWORK_LABEL: { [key: number]: any } = {
   [ChainId.DOGECHAIN]: "DogeChain",
-  [ChainId.DOGECHAIN_TESTNET]: "DogeChain Testnet"
+  [ChainId.DOGECHAIN_TESTNET]: "DogeChain Testnet",
 };
 
 const networks: Config[] = [
@@ -29,7 +29,6 @@ const networks: Config[] = [
     symbol: NETWORK_LABEL[ChainId.DOGECHAIN_TESTNET],
     icon: NETWORK_ICON[ChainId.DOGECHAIN_TESTNET],
   },
-
 ];
 
 export default networks;

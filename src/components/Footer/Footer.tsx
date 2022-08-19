@@ -6,7 +6,7 @@ import {
   ApeSwapRoundIcon,
   // DiscordIcon,
   // InstagramIcon,
- // MediumIcon,
+  // MediumIcon,
   // RedditIcon,
   TelegramIcon,
   TwitterIcon,
