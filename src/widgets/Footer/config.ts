@@ -1,30 +1,26 @@
 export default [
   {
-    label: "Voting",
-    href: "https://voting.pancakeswap.finance",
-  },
-  {
     label: "Staking",
     href: "/staking",
   },
   {
     label: "Docs",
-    href: "https://docs.pancakeswap.finance",
+    href: "https://cheemswap.gitbook.io",
   },
   {
     label: "Github",
-    href: "https://github.com/pancakeswap",
+    href: "https://github.com/cheemswap",
   },
-  {
+  /* {
     label: "Blog",
     href: "https://pancakeswap.medium.com",
-  },
+  }, */
   {
     label: "Telegram",
-    href: "https://t.me/PancakeSwap",
+    href: "https://t.me/cheemswap",
   },
   {
     label: "Twitter",
-    href: "https://twitter.com/pancakeswap",
+    href: "https://twitter.com/cheemsswapdoge",
   },
 ];

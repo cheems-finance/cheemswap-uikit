@@ -6,11 +6,11 @@ const links: NavProps["links"] = [
     items: [
       {
         label: "Exchange",
-        href: "https://exchange.pancakeswap.finance",
+        href: "https://swap.cheemswap.dog",
       },
       {
         label: "Liquidity",
-        href: "https://exchange.pancakeswap.finance/#/pool",
+        href: "https://swap.cheemswap.dog/#/pool",
       },
     ],
   },
@@ -20,15 +20,15 @@ const links: NavProps["links"] = [
   },
   {
     label: "Pools",
-    href: "/syrup",
+    href: "/pools",
   },
   {
     label: "Lottery",
     href: "/lottery",
   },
   {
-    label: "Info",
-    href: "https://pancakeswap.info",
+    label: "Analytics",
+    href: "https://info.cheemswap.dog",
   },
   {
     label: "IFO",

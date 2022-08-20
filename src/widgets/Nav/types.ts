@@ -26,7 +26,7 @@ export interface NavProps {
   login: Login;
   logout: () => void;
   isDark: boolean;
-  toggleTheme: (isDark: boolean) => void;
+  // toggleTheme: (isDark: boolean) => void;
   currentLang: string;
   langs: LangType[];
   setLang: (lang: LangType) => void;

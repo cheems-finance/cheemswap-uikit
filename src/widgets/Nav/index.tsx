@@ -27,7 +27,7 @@ const Nav: React.FC<NavProps> = ({
   login,
   logout,
   isDark,
-  toggleTheme,
+  // toggleTheme,
   langs,
   setLang,
   currentLang,
@@ -36,8 +36,8 @@ const Nav: React.FC<NavProps> = ({
   const [isOpened, setIsOpened] = useState(false);
   return (
     <StyledNav>
-      <Link to="/" aria-label="Pancake home page" style={{ marginRight: "16px" }}>
-        <Logo isDark={isDark} width="160px" height="100%" />
+      <Link to="/" aria-label="Cheemswap home page" style={{ marginRight: "16px" }}>
+        <Logo isDark={isDark} width="300px" height="100%" />
       </Link>
       <MobileOnlyButton aria-label="Open mobile menu" onClick={() => setIsOpened((prevState) => !prevState)}>
         <HamburgerIcon />
@@ -50,7 +50,7 @@ const Nav: React.FC<NavProps> = ({
         login={login}
         logout={logout}
         isDark={isDark}
-        toggleTheme={toggleTheme}
+        // toggleTheme={toggleTheme}
         langs={langs}
         setLang={setLang}
         currentLang={currentLang}

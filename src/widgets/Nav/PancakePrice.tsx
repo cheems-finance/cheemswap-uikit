@@ -19,7 +19,7 @@ const Container = styled.a`
 
 const PancakePrice: React.FC<{ cakePriceUsd?: number }> = ({ cakePriceUsd }) => {
   return cakePriceUsd ? (
-    <Container href="https://pancakeswap.info/token/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82">
+    <Container href="https://info.cheemswap.dog/token/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82">
       <PancakeRoundIcon mr="4px" />
       <Text bold>{`$${cakePriceUsd.toFixed(3)}`}</Text>
     </Container>
