@@ -1,7 +1,5 @@
 import React from "react";
 import styled, { DefaultTheme } from "styled-components";
-import getFontFamily from "../../util/getFontFamily";
-import { Text } from "../Text";
 import { CardRibbonProps } from "./types";
 
 interface StyledCardRibbonProps extends CardRibbonProps {
@@ -9,7 +7,7 @@ interface StyledCardRibbonProps extends CardRibbonProps {
 }
 
 const StyledCardRibbon = styled.div<Partial<StyledCardRibbonProps>>`
-  background-color: ${({ variantColor = "text", theme }) => theme.colors[variantColor]};
+  background-color: ${({ variantColor = "secondary", theme }) => theme.colors[variantColor]};
   color: white;
   margin: 0;
   padding: 0;
@@ -21,11 +19,10 @@ const StyledCardRibbon = styled.div<Partial<StyledCardRibbonProps>>`
   transform: translateX(30%) translateY(0%) rotate(45deg);
   transform-origin: top left;
   width: 96px;
-  font-family: ${({ fontFamily, theme }) => fontFamily && getFontFamily(fontFamily, theme)};
 
   &:before,
   &:after {
-    background-color: ${({ variantColor = "text", theme }) => theme.colors[variantColor]};
+    background-color: ${({ variantColor = "secondary", theme }) => theme.colors[variantColor]};
     content: "";
     height: 100%;
     margin: 0 -1px; /* Removes tiny gap */
@@ -42,7 +39,7 @@ const StyledCardRibbon = styled.div<Partial<StyledCardRibbonProps>>`
     left: 100%;
   }
 
-  & > p {
+  & > div {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -50,12 +47,10 @@ const StyledCardRibbon = styled.div<Partial<StyledCardRibbonProps>>`
   }
 `;
 
-const CardRibbon: React.FC<CardRibbonProps> = ({ variantColor, text, color, fontWeight }) => {
+const CardRibbon: React.FC<CardRibbonProps> = ({ variantColor, text }) => {
   return (
     <StyledCardRibbon variantColor={variantColor}>
-      <Text as="p" fontWeight={fontWeight} color={color}>
-        {text}
-      </Text>
+      <div title={text}>{text}</div>
     </StyledCardRibbon>
   );
 };

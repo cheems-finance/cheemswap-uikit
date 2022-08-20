@@ -12,8 +12,6 @@ export const Default: React.FC = () => {
   const [radioSm, setRadioSm] = useState("one");
 
   const handleChange = (evt) => {
-    // eslint-disable-next-line
-    console.info("fired");
     const { value } = evt.target;
     setRadio(value);
   };

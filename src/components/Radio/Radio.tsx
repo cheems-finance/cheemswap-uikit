@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { space } from "styled-system";
 import { RadioProps, scales } from "./types";
 
 const getScale = ({ scale }: RadioProps) => {
@@ -34,7 +33,7 @@ const Radio = styled.input.attrs({ type: "radio" })<RadioProps>`
   transition: background-color 0.2s ease-in-out;
   border: 0;
   border-radius: 50%;
-  background-color: ${({ theme }) => theme.colors.inputBorder};
+  background-color: ${({ theme }) => theme.colors.input};
   box-shadow: ${({ theme }) => theme.shadows.inset};
 
   &:after {
@@ -67,12 +66,10 @@ const Radio = styled.input.attrs({ type: "radio" })<RadioProps>`
     cursor: default;
     opacity: 0.6;
   }
-  ${space}
 `;
 
 Radio.defaultProps = {
   scale: scales.MD,
-  m: 0,
 };
 
 export default Radio;

@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { Variants } from "../Button/types";
 
-const StyledButtonMenu = styled.div<{ variant: Variants }>`
-  background-color: ${({ theme }) => theme.colors.white3};
+const StyledButtonMenu = styled.div`
+  background-color: ${({ theme }) => theme.colors.tertiary};
   border-radius: 16px;
   display: inline-flex;
 

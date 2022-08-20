@@ -3,13 +3,10 @@ import { ButtonProps, Sizes, variants } from "../Button/types";
 export type ButtonMenuItemProps = {
   isActive?: boolean;
   size?: Sizes;
-  fontFamily?: string;
-  fontSize?: string;
-  isMobile?: boolean;
 } & ButtonProps;
 
 export interface ButtonMenuProps {
-  variant?: typeof variants.PRIMARY | typeof variants.SUBTLE | typeof variants.YELLOW;
+  variant?: typeof variants.PRIMARY | typeof variants.SUBTLE;
   activeIndex?: number;
   onClick?: (index: number) => void;
   size?: Sizes;

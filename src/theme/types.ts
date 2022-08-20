@@ -6,7 +6,6 @@ export type MediaQueries = {
   md: string;
   lg: string;
   xl: string;
-  xxl: string;
   nav: string;
 };
 
@@ -25,54 +24,28 @@ export type Shadows = {
   success: string;
   warning: string;
   focus: string;
-  yellow: string;
   inset: string;
 };
 
-export type Gradients = {
-  bubblegum?: string;
-  newGradient?: string;
-};
-
 export type Colors = {
+  primary: string;
   primaryBright: string;
   primaryDark: string;
+  secondary: string;
+  tertiary: string;
   success: string;
-  brown: string;
-  error: string; // replaces failure
-  yellow: string;
-  black?: string;
-  dividerColor: string;
-  navbar: string;
-  primaryButtonDisable: string;
-  secondaryButtonDisableBg: string;
-  secondaryButtonDisableColor: string;
+  failure: string;
+  warning: string;
+  contrast: string;
+  invertedContrast: string;
+  input: string;
   background: string;
   backgroundDisabled: string;
-  white2: string;
-  white3: string;
-  white4: string;
   text: string;
-  primary: string;
-  gray: string;
-  inputBorder: string;
-  tertiary: string;
-  primaryGray: string;
-  yellowHover: string;
-  // secondary: string;
-  // warning: string;
-  // contrast: string;
-  // invertedContrast: string;
-  // input: string;
-  // textDisabled: string;
-  // textSubtle: string;
-  // borderColor: string;
-  // card: string;
-  // white: string;
-  // green: string;
-
-  // Gradients
-  gradients?: Gradients;
+  textDisabled: string;
+  textSubtle: string;
+  borderColor: string;
+  card: string;
 
   // Brand colors
   binance: string;
@@ -81,8 +54,4 @@ export type Colors = {
 export type ZIndices = {
   dropdown: number;
   modal: number;
-};
-
-export type FontFamily = {
-  poppins: string;
 };

@@ -19,9 +19,8 @@ const style = {
 
 const Heading = styled(Text).attrs({ bold: true })<HeadingProps>`
   ${({ size }) => style[size || sizes.MD]}
-  font-weight: ${({ fontWeight = 400 }) => fontWeight};
+  font-weight:600;
   line-height: 1.1;
-  text-align: ${({ textAlign }) => textAlign};
 `;
 
 Heading.defaultProps = {

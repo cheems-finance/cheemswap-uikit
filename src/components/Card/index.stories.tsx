@@ -2,15 +2,17 @@ import React from "react";
 import styled from "styled-components";
 /* eslint-disable import/no-unresolved */
 import { Meta } from "@storybook/react/types-6-0";
-import Heading from "../Heading/Heading";
 import CardRibbon from "./CardRibbon";
-import UIKitCardHeader from "./CardHeader";
 import CardBody from "./CardBody";
 import CardFooter from "./CardFooter";
 import Card from "./Card";
 
 const Row = styled.div`
   margin-bottom: 32px;
+
+  & > button + button {
+    margin-left: 16px;
+  }
 `;
 
 export default {
@@ -56,44 +58,27 @@ export const Default: React.FC = () => {
   );
 };
 
-export const CardHeader: React.FC = () => {
-  return (
-    <div style={{ padding: "32px", width: "500px" }}>
-      <Card>
-        <UIKitCardHeader>
-          <Heading size="xl" fontWeight={800}>
-            Card Header
-          </Heading>
-        </UIKitCardHeader>
-        <CardBody>Body</CardBody>
-        <CardFooter>Footer</CardFooter>
-      </Card>
-    </div>
-  );
-};
 export const Ribbon: React.FC = () => {
   return (
     <div style={{ padding: "32px", width: "500px" }}>
       <Row>
-        <Card ribbon={<CardRibbon text="Ribbon" fontWeight={800} variantColor="primaryBright" color="#4D4040" />}>
+        <Card ribbon={<CardRibbon text="Ribbon" />}>
           <div style={{ height: "112px", backgroundColor: "#191326" }} />
           <CardBody style={{ height: "150px" }}>Body</CardBody>
         </Card>
       </Row>
       <Row>
-        <Card
-          ribbon={<CardRibbon variantColor="primary" text="Ribbon with Long Text" fontWeight={800} color="##FAFAFA" />}
-        >
+        <Card ribbon={<CardRibbon variantColor="textDisabled" text="Ribbon with Long Text" />}>
           <CardBody style={{ height: "150px" }}>Ribbons will truncate when text is too long</CardBody>
         </Card>
       </Row>
       <Row>
-        <Card ribbon={<CardRibbon variantColor="success" text="Success" fontWeight={800} color="##FAFAFA" />}>
+        <Card ribbon={<CardRibbon variantColor="success" text="Success" />}>
           <CardBody style={{ height: "150px" }}>Card</CardBody>
         </Card>
       </Row>
       <Row>
-        <Card ribbon={<CardRibbon variantColor="error" text="Failure" fontWeight={800} color="##FAFAFA" />}>
+        <Card ribbon={<CardRibbon variantColor="failure" text="Failure" />}>
           <CardBody style={{ height: "150px" }}>Any Color in the theme</CardBody>
         </Card>
       </Row>

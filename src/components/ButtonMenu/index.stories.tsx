@@ -6,8 +6,7 @@ import ButtonMenu from "./ButtonMenu";
 import ButtonMenuItem from "./ButtonMenuItem";
 
 const Row = styled.div`
-  margin-bottom: 10px;
-  padding: 1em;
+  margin-bottom: 32px;
 
   & > button + button {
     margin-left: 16px;
@@ -31,7 +30,7 @@ export const Default: React.FC = () => {
     <>
       <Row>
         <ButtonMenu activeIndex={index} onClick={handleClick}>
-          <ButtonMenuItem>primary</ButtonMenuItem>
+          <ButtonMenuItem>Button 1</ButtonMenuItem>
           <ButtonMenuItem>Button 2</ButtonMenuItem>
           <ButtonMenuItem>Button 3</ButtonMenuItem>
           <ButtonMenuItem>Button 4</ButtonMenuItem>
@@ -47,7 +46,7 @@ export const Default: React.FC = () => {
       </Row>
       <Row>
         <ButtonMenu activeIndex={index} onClick={handleClick} variant="subtle">
-          <ButtonMenuItem>subtle</ButtonMenuItem>
+          <ButtonMenuItem>Button 1</ButtonMenuItem>
           <ButtonMenuItem>Button 2</ButtonMenuItem>
           <ButtonMenuItem>Button 3</ButtonMenuItem>
           <ButtonMenuItem>Button 4</ButtonMenuItem>
@@ -56,22 +55,6 @@ export const Default: React.FC = () => {
       <Row>
         <ButtonMenu activeIndex={index1} onClick={handleClick1} size="sm" variant="subtle">
           <ButtonMenuItem>Button 1</ButtonMenuItem>
-          <ButtonMenuItem>Button 2</ButtonMenuItem>
-          <ButtonMenuItem>Button 3</ButtonMenuItem>
-          <ButtonMenuItem>Button 4</ButtonMenuItem>
-        </ButtonMenu>
-      </Row>
-      <Row>
-        <ButtonMenu activeIndex={index} onClick={handleClick} variant="yellow">
-          <ButtonMenuItem>yellow</ButtonMenuItem>
-          <ButtonMenuItem>Button 2</ButtonMenuItem>
-          <ButtonMenuItem>Button 3</ButtonMenuItem>
-          <ButtonMenuItem>Button 4</ButtonMenuItem>
-        </ButtonMenu>
-      </Row>
-      <Row>
-        <ButtonMenu activeIndex={index1} onClick={handleClick1} size="sm" variant="yellow">
-          <ButtonMenuItem fontSize="12px">Button Font Size</ButtonMenuItem>
           <ButtonMenuItem>Button 2</ButtonMenuItem>
           <ButtonMenuItem>Button 3</ButtonMenuItem>
           <ButtonMenuItem>Button 4</ButtonMenuItem>
@@ -86,13 +69,13 @@ export const AsLinks: React.FC = () => {
     <>
       <Row>
         <ButtonMenu activeIndex={0}>
-          <ButtonMenuItem as="a" href="https://apeswap.finance">
+          <ButtonMenuItem as="a" href="https://pancakeswap.finance">
             Link 1
           </ButtonMenuItem>
-          <ButtonMenuItem as="a" href="https://apeswap.finance">
+          <ButtonMenuItem as="a" href="https://pancakeswap.finance">
             Link 2
           </ButtonMenuItem>
-          <ButtonMenuItem as="a" href="https://apeswap.finance">
+          <ButtonMenuItem as="a" href="https://pancakeswap.finance">
             Link 3
           </ButtonMenuItem>
         </ButtonMenu>

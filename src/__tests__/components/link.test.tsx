@@ -3,13 +3,13 @@ import { renderWithTheme } from "../../testHelpers";
 import { Link, LinkExternal } from "../../components/Link";
 
 it("renders link correctly", () => {
-  const { asFragment } = renderWithTheme(<Link href="https://apeswap.finance">Link</Link>);
+  const { asFragment } = renderWithTheme(<Link href="https://pancakeswap.finance">Link</Link>);
   expect(asFragment()).toMatchInlineSnapshot(`
     <DocumentFragment>
       <a
-        class="sc-bdvvtL sc-gsDKAQ foxtoM eisOmR"
+        class="sc-bdfBwQ sc-gsTCUz iuiEzU bHXtAu"
         color="text"
-        href="https://apeswap.finance"
+        href="https://pancakeswap.finance"
       >
         Link
       </a>
@@ -18,20 +18,20 @@ it("renders link correctly", () => {
 });
 
 it("renders link external link correctly", () => {
-  const { asFragment } = renderWithTheme(<LinkExternal href="https://apeswap.finance">Link</LinkExternal>);
+  const { asFragment } = renderWithTheme(<LinkExternal href="https://pancakeswap.finance">Link</LinkExternal>);
   expect(asFragment()).toMatchInlineSnapshot(`
     <DocumentFragment>
       <a
-        class="sc-bdvvtL sc-gsDKAQ foxtoM eisOmR"
+        class="sc-bdfBwQ sc-gsTCUz iuiEzU bHXtAu"
         color="text"
-        href="https://apeswap.finance"
+        href="https://pancakeswap.finance"
         rel="noreferrer noopener"
         target="_blank"
       >
         Link
         <svg
-          class="sc-dkPtRN kGqtAt"
-          color="text"
+          class="sc-dlfnbm gvhlhy"
+          color="primary"
           viewBox="0 0 24 24"
           width="20px"
           xmlns="http://www.w3.org/2000/svg"

@@ -23,11 +23,6 @@ export const Default: React.FC = () => {
       <Flex justifyContent="center" mt="8px">
         <span>center</span>
       </Flex>
-      <Flex justifyContent="space-between" mt="40px">
-        <span>Left</span>
-        <span>center</span>
-        <span>right</span>
-      </Flex>
     </div>
   );
 };

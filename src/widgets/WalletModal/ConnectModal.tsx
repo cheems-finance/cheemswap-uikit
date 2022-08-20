@@ -30,15 +30,14 @@ const ConnectModal: React.FC<Props> = ({ login, onDismiss = () => null }) => (
         mb={index < config.length - 1 ? "8px" : "0"}
       />
     ))}
-    <HelpLink href="https://docs.binance.org/smart-chain/wallet/metamask.html" external color="text">
-      <HelpIcon mr="6px" />
+    <HelpLink
+      href="https://docs.pancakeswap.finance/guides/faq#how-do-i-set-up-my-wallet-on-binance-smart-chain"
+      external
+    >
+      <HelpIcon color="primary" mr="6px" />
       Learn how to connect
     </HelpLink>
   </Modal>
 );
-
-ConnectModal.defaultProps = {
-  onDismiss: () => null,
-};
 
 export default ConnectModal;

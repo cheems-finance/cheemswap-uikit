@@ -1,13 +1,9 @@
-import { HTMLAttributes } from "react";
 import { SpaceProps } from "styled-system";
 import { Colors } from "../../theme/types";
 
 export interface CardRibbonProps {
   variantColor?: keyof Colors;
   text: string;
-  fontFamily?: string;
-  fontWeight?: number;
-  color?: string;
 }
 
 export type CardTheme = {
@@ -16,10 +12,9 @@ export type CardTheme = {
   boxShadowActive: string;
   boxShadowSuccess: string;
   boxShadowWarning: string;
-  cardHeaderBackground: string;
 };
 
-export interface CardProps extends SpaceProps, HTMLAttributes<HTMLDivElement> {
+export interface CardProps extends SpaceProps {
   isActive?: boolean;
   isSuccess?: boolean;
   isWarning?: boolean;

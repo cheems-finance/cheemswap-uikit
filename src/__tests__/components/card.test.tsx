@@ -1,11 +1,10 @@
 import React from "react";
 import { renderWithTheme } from "../../testHelpers";
-import { Card, CardBody, CardHeader, CardFooter } from "../../components/Card";
+import { Card, CardBody, CardFooter } from "../../components/Card";
 
 it("renders correctly", () => {
   const { asFragment } = renderWithTheme(
     <Card>
-      <CardHeader>Header</CardHeader>
       <CardBody>Body</CardBody>
       <CardFooter>Footer</CardFooter>
     </Card>
@@ -13,20 +12,15 @@ it("renders correctly", () => {
   expect(asFragment()).toMatchInlineSnapshot(`
     <DocumentFragment>
       <div
-        class="sc-bdvvtL loOlwF"
+        class="sc-bdfBwQ cZfuWT"
       >
         <div
-          class="sc-dkPtRN gLqhNf"
-        >
-          Header
-        </div>
-        <div
-          class="sc-gsDKAQ bubPPh"
+          class="sc-gsTCUz iMfsSF"
         >
           Body
         </div>
         <div
-          class="sc-hKwDye jgYErg"
+          class="sc-dlfnbm eDxzKs"
         >
           Footer
         </div>

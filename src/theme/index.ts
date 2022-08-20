@@ -3,17 +3,16 @@ import { ButtonTheme } from "../components/Button/types";
 import { CardTheme } from "../components/Card/types";
 import { RadioTheme } from "../components/Radio/types";
 import { ToggleTheme } from "../components/Toggle/types";
-import { NavTheme } from "../widgets/Navbar/types";
+import { NavTheme } from "../widgets/Nav/types";
 import { ModalTheme } from "../widgets/Modal/types";
-import { Colors, Breakpoints, MediaQueries, Spacing, Shadows, Radii, ZIndices, FontFamily } from "./types";
+import { Colors, Breakpoints, MediaQueries, Spacing, Shadows, Radii, ZIndices } from "./types";
 
-export interface ApeSwapTheme {
+export interface PancakeTheme {
   siteWidth: number;
   isDark: boolean;
   alert: AlertTheme;
   colors: Colors;
   button: ButtonTheme;
-  fontFamily: FontFamily;
   card: CardTheme;
   nav: NavTheme;
   modal: ModalTheme;

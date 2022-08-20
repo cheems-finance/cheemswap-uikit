@@ -1,5 +1,3 @@
-import { SpaceProps } from "styled-system";
-
 export type RadioTheme = {
   handleBackground: string;
 };
@@ -11,6 +9,6 @@ export const scales = {
 
 export type Scales = typeof scales[keyof typeof scales];
 
-export interface RadioProps extends SpaceProps {
+export interface RadioProps {
   scale?: Scales;
 }

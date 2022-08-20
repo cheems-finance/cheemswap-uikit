@@ -2,9 +2,9 @@ import { darkColors, lightColors } from "../../theme/colors";
 import { RadioTheme } from "./types";
 
 export const light: RadioTheme = {
-  handleBackground: lightColors.navbar,
+  handleBackground: lightColors.card,
 };
 
 export const dark: RadioTheme = {
-  handleBackground: darkColors.navbar,
+  handleBackground: darkColors.card,
 };

@@ -5,28 +5,24 @@ import ErrorIcon from "../Svg/Icons/Error";
 import BlockIcon from "../Svg/Icons/Block";
 import InfoIcon from "../Svg/Icons/Info";
 import { Text } from "../Text";
-import { IconButton } from "../Button";
-import { CloseIcon } from "../Svg";
-import { Flex } from "../Flex";
 import { AlertProps, variants } from "./types";
 
 interface ThemedIconLabel {
   variant: AlertProps["variant"];
   theme: DefaultTheme;
-  hasDescription: boolean;
 }
 
 const getThemeColor = ({ theme, variant = variants.INFO }: ThemedIconLabel) => {
   switch (variant) {
     case variants.DANGER:
-      return theme.colors.error;
+      return theme.colors.failure;
     case variants.WARNING:
-      return theme.colors.yellow;
+      return theme.colors.warning;
     case variants.SUCCESS:
       return theme.colors.success;
     case variants.INFO:
     default:
-      return theme.colors.text;
+      return theme.colors.secondary;
   }
 };
 
@@ -48,51 +44,39 @@ const IconLabel = styled.div<ThemedIconLabel>`
   background-color: ${getThemeColor};
   border-radius: 16px 0 0 16px;
   color: ${({ theme }) => theme.alert.background};
-  padding: 12px;
+  padding: 8px;
+  text-align: center;
+  width: 40px;
 `;
 
-const withHandlerSpacing = 32 + 12 + 8; // button size + inner spacing + handler position
-const Details = styled.div<{ hasHandler: boolean }>`
-  flex: 1;
-  padding-bottom: 12px;
-  padding-left: 12px;
-  padding-right: ${({ hasHandler }) => (hasHandler ? `${withHandlerSpacing}px` : "12px")};
-  padding-top: 12px;
-`;
-
-const CloseHandler = styled.div`
-  border-radius: 0 16px 16px 0;
-  right: 8px;
-  position: absolute;
-  top: 8px;
-`;
-
-const StyledAlert = styled(Flex)`
-  position: relative;
+const Details = styled.div`
   background-color: ${({ theme }) => theme.alert.background};
-  border-radius: 16px;
-  box-shadow: 0px 20px 36px -8px rgba(14, 14, 44, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.05);
+  border-radius: 0 16px 16px 0;
+  padding: 8px;
 `;
 
-const Alert: React.FC<AlertProps> = ({ title, children, variant, onClick }) => {
+const StyledAlert = styled.div`
+  border-radius: 16px;
+  box-shadow: ${({ theme }) => theme.shadows.level1};
+  display: flex;
+
+  ${Details} {
+    flex: 1;
+  }
+`;
+
+const Alert: React.FC<AlertProps> = ({ title, description, variant }) => {
   const Icon = getIcon(variant);
 
   return (
     <StyledAlert>
-      <IconLabel variant={variant} hasDescription={!!children}>
-        <Icon color="currentColor" width="24px" />
+      <IconLabel variant={variant}>
+        <Icon color="currentColor" width="20px" />
       </IconLabel>
-      <Details hasHandler={!!onClick}>
+      <Details>
         <Text bold>{title}</Text>
-        {typeof children === "string" ? <Text as="p">{children}</Text> : children}
+        {description && <Text as="p">{description}</Text>}
       </Details>
-      {onClick && (
-        <CloseHandler>
-          <IconButton size="sm" variant="text" onClick={onClick}>
-            <CloseIcon width="24px" color="currentColor" />
-          </IconButton>
-        </CloseHandler>
-      )}
     </StyledAlert>
   );
 };

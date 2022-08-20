@@ -1,96 +1,47 @@
 import styled, { DefaultTheme } from "styled-components";
 import { space } from "styled-system";
-import getFontFamily from "../../util/getFontFamily";
-import getColor from "../../util/getColor";
 import { ButtonProps, ButtonThemeVariant, variants } from "./types";
 
 type ThemedProps = {
   theme: DefaultTheme;
 } & ButtonProps;
 
-const getDisabledStyles = ({ isLoading, theme }: ThemedProps) => {
-  if (isLoading === true) {
-    return `
-      &:disabled,
-      &.button--disabled {
-        cursor: not-allowed;
-      }
-    `;
-  }
-
-  return `
-    &:disabled,
-    &.button--disabled {
-      background-color: ${theme.colors.white3};
-      border-color: ${variants.PRIMARY ? "transparent" : theme.colors.background};
-      box-shadow: none;
-      color: ${variants.PRIMARY ? theme.colors.primaryButtonDisable : theme.colors.secondaryButtonDisableColor};
-      cursor: not-allowed;
-    }
-  `;
-};
-
-const removePointerEvents = ({ disabled, as }: ThemedProps) => {
-  if (disabled && as && as !== "button") {
-    return `
-      pointer-events: none;
-    `;
-  }
-
-  return "";
-};
-
-const getButtonVariantProp =
-  (prop: keyof ButtonThemeVariant) =>
-  ({ theme, variant = variants.PRIMARY }: ThemedProps) => {
-    return theme.button[variant][prop];
-  };
-
-const getButtonHeight = (size: string | undefined) => {
-  if (size === "sm") {
-    return "28px";
-  }
-  if (size === "mds") {
-    return "36px";
-  }
-  if (size === "md") {
-    return "48px";
-  }
-  return "30px";
+const getButtonVariantProp = (prop: keyof ButtonThemeVariant) => ({
+  theme,
+  variant = variants.PRIMARY,
+}: ThemedProps) => {
+  return theme.button[variant][prop];
 };
 
 const StyledButton = styled.button<ButtonProps>`
   align-items: center;
   background-color: ${getButtonVariantProp("background")};
   border: ${getButtonVariantProp("border")};
-  color: ${({ color, theme }) => (color ? getColor(color, theme) : getButtonVariantProp("color"))};
   border-radius: 16px;
-  font-weight: ${({ fontWeight = 600 }) => fontWeight};
   box-shadow: ${getButtonVariantProp("boxShadow")};
+  color: ${getButtonVariantProp("color")};
   cursor: pointer;
   display: inline-flex;
-  font-family: ${({ fontFamily, theme }) => fontFamily && getFontFamily(fontFamily, theme)};
-  font-size: ${({ fontSize }) => fontSize || "16px"};
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
   /* max-content instead of auto for Safari fix */
   width: ${({ fullWidth }) => (fullWidth ? "100%" : "max-content")};
-  height: ${({ size }) => getButtonHeight(size)};
+  height: ${({ size }) => (size === "sm" ? "32px" : "48px")};
   line-height: 1;
   letter-spacing: 0.03em;
   justify-content: center;
   outline: 0;
-  padding: ${({ isMobile }) => (isMobile ? "0 10px" : "0 24px")};
+  padding: ${({ size }) => (size === "sm" ? "0 16px" : "0 24px")};
   transition: background-color 0.2s;
-  opacity: ${({ isLoading }) => (isLoading ? 0.5 : 1)};
-  text-transform: uppercase;
 
-  &:hover:not(:disabled):not(.button--disabled):not(:active) {
+  &:hover:not(:disabled):not(:active) {
     background-color: ${getButtonVariantProp("backgroundHover")};
     border-color: ${getButtonVariantProp("borderColorHover")};
-    color: ${({ theme, variant }) => (variant === "secondary" ? theme.colors.yellow : getButtonVariantProp("color"))};
   }
 
   &:focus:not(:active) {
-    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.text};
+    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.secondary};
   }
 
   &:active {
@@ -98,14 +49,19 @@ const StyledButton = styled.button<ButtonProps>`
     box-shadow: ${getButtonVariantProp("boxShadowActive")};
   }
 
-  ${getDisabledStyles}
-  ${removePointerEvents}
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.backgroundDisabled};
+    border-color: ${({ theme }) => theme.colors.backgroundDisabled};
+    box-shadow: none;
+    color: ${({ theme }) => theme.colors.textDisabled};
+    cursor: not-allowed;
+  }
   ${space}
 `;
 
 StyledButton.defaultProps = {
   fullWidth: false,
-  type: "button",
+  as: "button",
 };
 
 export default StyledButton;

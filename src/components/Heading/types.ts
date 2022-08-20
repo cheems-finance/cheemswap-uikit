@@ -20,7 +20,4 @@ export type Sizes = typeof sizes[keyof typeof sizes];
 export interface HeadingProps {
   as?: Tags;
   size?: Sizes;
-  fontFamily?: string;
-  textAlign?: string;
-  fontWeight?: number;
 }
