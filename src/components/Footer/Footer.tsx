@@ -79,7 +79,9 @@ const Footer: React.FC<FooterProps> = ({
                 <TwitterIcon
                   color="white3"
                   fill={iconFillColor}
-                  onClick={() => trackClick(track, event, position, chainId, "twitter", "https://twitter.com/cheemsswapdoge")}
+                  onClick={() =>
+                    trackClick(track, event, position, chainId, "twitter", "https://twitter.com/cheemsswapdoge")
+                  }
                 />
               </StyledLink>
               {/* <StyledLink href="https://discord.com/invite/ApeSwap" target="_blank" rel="noopener noreferrer">

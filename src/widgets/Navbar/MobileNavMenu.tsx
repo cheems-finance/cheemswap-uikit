@@ -208,7 +208,9 @@ const MobileNavMenu: React.FC<MobileNavMenuProps> = ({
               <TwitterIcon
                 color="white3"
                 fill={iconFillColor}
-                onClick={() => trackClick(track, event, position, chainId, "twitter", "https://twitter.com/cheemsswapdoge")}
+                onClick={() =>
+                  trackClick(track, event, position, chainId, "twitter", "https://twitter.com/cheemsswapdoge")
+                }
               />
             </StyledLink>
             <StyledLink href="https://t.me/cheemswap" target="_blank" rel="noopener noreferrer">

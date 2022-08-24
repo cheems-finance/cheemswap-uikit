@@ -26,6 +26,7 @@ const langs: Language[] = [...Array(20)].map((_, i) => ({ code: `en${i}`, langua
 const translate: (key: string) => string = (key) => key;
 const track: TrackHandler =
   // eslint-disable-next-line no-empty-pattern
+
     ({}: TrackProps) =>
     () => ({});
 
@@ -62,9 +63,9 @@ export const Connected: React.FC = (args: any) => {
           bananaPriceUsd={0.23158668932877668}
           links={links}
           // profile={{
-            // profileLink: "https://ipfs.io/ipfs/QmYhuJnr3GGUnDGtg6rmSXTgo7FzaWgrriqikfgn5SkXhZ/7142.png",
-            // noProfileLink: "",
-            // image: "https://ipfs.io/ipfs/QmYhuJnr3GGUnDGtg6rmSXTgo7FzaWgrriqikfgn5SkXhZ/7142.png",
+          // profileLink: "https://ipfs.io/ipfs/QmYhuJnr3GGUnDGtg6rmSXTgo7FzaWgrriqikfgn5SkXhZ/7142.png",
+          // noProfileLink: "",
+          // image: "https://ipfs.io/ipfs/QmYhuJnr3GGUnDGtg6rmSXTgo7FzaWgrriqikfgn5SkXhZ/7142.png",
           // }}
           chainId={2000}
           switchNetwork={noop}
@@ -219,8 +220,8 @@ export const WithNoProfile: React.FC = () => {
         chainId={2000}
         switchNetwork={noop}
         // profile={{
-          // profileLink: "/profile",
-         //  noProfileLink: "/no-profile",
+        // profileLink: "/profile",
+        //  noProfileLink: "/no-profile",
         // }}
         liveResult={navbarApiResult}
         track={track}
@@ -281,10 +282,10 @@ export const WithProfile: React.FC = () => {
         chainId={2000}
         switchNetwork={noop}
         // profile={{
-          // name: "apeswap",
-          // image: "https://raw.githubusercontent.com/ApeSwapFinance/non-fungible-apes/main/images/4.png",
-          // profileLink: "/profile",
-          // noProfileLink: "/no-profile",
+        // name: "apeswap",
+        // image: "https://raw.githubusercontent.com/ApeSwapFinance/non-fungible-apes/main/images/4.png",
+        // profileLink: "/profile",
+        // noProfileLink: "/no-profile",
         // }}
         liveResult={navbarApiResult}
         track={track}

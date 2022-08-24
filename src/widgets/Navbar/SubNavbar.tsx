@@ -141,7 +141,9 @@ const SubNavbar: React.FC<SubNavbarProps> = ({
               <TwitterIcon
                 color="white3"
                 fill={iconFillColor}
-                onClick={() => trackClick(track, event, position, chainId, "twitter", "https://twitter.com/cheemswapdoge")}
+                onClick={() =>
+                  trackClick(track, event, position, chainId, "twitter", "https://twitter.com/cheemswapdoge")
+                }
               />
             </StyledLink>
             <StyledLink href="https://t.me/cheemswap" target="_blank" rel="noopener noreferrer">
