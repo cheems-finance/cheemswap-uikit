@@ -1,61 +1,97 @@
-import { scales, variants } from "./types";
+import { ButtonTheme, variants } from "./types";
+import { lightColors, darkColors } from "../../theme/colors";
 
-export const scaleVariants = {
-  [scales.MD]: {
-    height: "48px",
-    padding: "0 24px",
+const { PRIMARY, SECONDARY, TERTIARY, TEXT, SUCCESS, DANGER } = variants;
+
+export const light: ButtonTheme = {
+  [PRIMARY]: {
+    background: lightColors.yellow,
+    backgroundActive: lightColors.primaryBright,
+    backgroundHover: lightColors.yellowHover,
+    border: 0,
+    borderColorHover: "currentColor",
+    boxShadow: "none",
+    boxShadowActive: "none",
+    color: lightColors.primaryBright,
   },
-  [scales.SM]: {
-    height: "32px",
-    padding: "0 16px",
+  [SECONDARY]: {
+    background: lightColors.white2,
+    backgroundActive: lightColors.primaryBright,
+    backgroundHover: lightColors.white2,
+    border: `2px solid ${lightColors.text}`,
+    borderColorHover: lightColors.yellow,
+    boxShadow: "none",
+    boxShadowActive: "none",
+    color: lightColors.text,
   },
-  [scales.XS]: {
-    height: "20px",
-    fontSize: "12px",
-    padding: "0 8px",
+  [TERTIARY]: {
+    background: lightColors.white4,
+    backgroundActive: lightColors.white4,
+    backgroundHover: lightColors.white4,
+    border: 0,
+    borderColorHover: "currentColor",
+    boxShadow: "none",
+    boxShadowActive: "none",
+    color: lightColors.text,
+  },
+  [TEXT]: {
+    background: "transparent",
+    backgroundActive: "transparent",
+    backgroundHover: "transparent",
+    border: 0,
+    borderColorHover: "currentColor",
+    boxShadow: "none",
+    boxShadowActive: "none",
+    color: lightColors.text,
+  },
+  [SUCCESS]: {
+    background: lightColors.success,
+    backgroundActive: `${lightColors.success}D9`, // 70% opacity
+    backgroundHover: `${lightColors.success}B3`, // 85% opacity
+    border: 0,
+    borderColorHover: "currentColor",
+    boxShadow: "none",
+    boxShadowActive: "none",
+    color: lightColors.primaryBright,
+  },
+  [DANGER]: {
+    background: lightColors.error,
+    backgroundActive: lightColors.error,
+    backgroundHover: lightColors.error,
+    border: 0,
+    borderColorHover: "currentColor",
+    boxShadow: "none",
+    boxShadowActive: "none",
+    color: lightColors.primaryBright,
   },
 };
 
-export const styleVariants = {
-  [variants.PRIMARY]: {
-    backgroundColor: "primary",
-    color: "white",
+export const dark: ButtonTheme = {
+  [PRIMARY]: {
+    ...light.primary,
   },
-  [variants.SECONDARY]: {
-    backgroundColor: "transparent",
-    border: "2px solid",
-    borderColor: "primary",
-    boxShadow: "none",
-    color: "primary",
-    ":disabled": {
-      backgroundColor: "transparent",
-    },
+  [SECONDARY]: {
+    ...light.secondary,
+    background: darkColors.white2,
+    backgroundHover: darkColors.white2,
+    border: `2px solid ${darkColors.yellow}`,
+    color: darkColors.yellow,
   },
-  [variants.TERTIARY]: {
-    backgroundColor: "tertiary",
-    boxShadow: "none",
-    color: "primary",
+  [TERTIARY]: {
+    ...light.tertiary,
+    background: darkColors.white4,
+    backgroundActive: darkColors.white4,
+    backgroundHover: darkColors.white4,
+    color: darkColors.text,
   },
-  [variants.SUBTLE]: {
-    backgroundColor: "textSubtle",
-    color: "backgroundAlt",
+  [TEXT]: {
+    ...light.text,
+    color: darkColors.text,
   },
-  [variants.DANGER]: {
-    backgroundColor: "failure",
-    color: "white",
+  [SUCCESS]: {
+    ...light.success,
   },
-  [variants.SUCCESS]: {
-    backgroundColor: "success",
-    color: "white",
-  },
-  [variants.TEXT]: {
-    backgroundColor: "transparent",
-    color: "primary",
-    boxShadow: "none",
-  },
-  [variants.LIGHT]: {
-    backgroundColor: "input",
-    color: "textSubtle",
-    boxShadow: "none",
+  [DANGER]: {
+    ...light.danger,
   },
 };

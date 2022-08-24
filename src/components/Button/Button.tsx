@@ -1,51 +1,98 @@
-import React, { cloneElement, ElementType, isValidElement } from "react";
-import getExternalLinkProps from "../../util/getExternalLinkProps";
-import StyledButton from "./StyledButton";
-import { ButtonProps, scales, variants } from "./types";
+import React from "react";
+import { Button as ThemeUIButton } from "theme-ui";
+import Icon from "../Svg/_Icons/AutoRenew";
+import { ButtonProps, variants, buttonFontSizes, buttonPadding, sizes } from "./types";
 
-const Button = <E extends ElementType = "button">(props: ButtonProps<E>): JSX.Element => {
-  const { startIcon, endIcon, external, className, isLoading, disabled, children, ...rest } = props;
-  const internalProps = external ? getExternalLinkProps() : {};
-  const isDisabled = isLoading || disabled;
-  const classNames = className ? [className] : [];
-
-  if (isLoading) {
-    classNames.push("pancake-button--loading");
+const Button: React.FC<ButtonProps> = ({
+  variant = variants.PRIMARY,
+  size = sizes.MEDIUM,
+  load,
+  children,
+  startIcon,
+  endIcon,
+  fullWidth,
+  ...props
+}) => {
+  let hoverStyle = {
+    "&:hover": {
+      "&:not([disabled])": { borderColor: "#FFDA00", background: variant === "primary" && "#FFDA00" },
+      "&:disabled": {},
+    },
+  };
+  if (variant === "secondary") {
+    hoverStyle = {
+      "&:hover": {
+        "&:not([disabled])": hoverStyle["&:hover"]["&:not([disabled])"],
+        "&:disabled": { color: "secondaryButtonDisableColor", borderColor: "secondaryButtonDisable" },
+      },
+    };
   }
-
-  if (isDisabled && !isLoading) {
-    classNames.push("pancake-button--disabled");
+  if (variant === "tertiary") {
+    hoverStyle = {
+      "&:hover": {
+        "&:not([disabled])": {
+          borderColor: "primaryBtnDisable",
+          background: "white4",
+        },
+        "&:disabled": {},
+      },
+    };
+  }
+  if (variant === "success") {
+    hoverStyle = {
+      "&:hover": {
+        "&:not([disabled])": {
+          borderColor: "hoveredSuccess",
+          background: "hoveredSuccess",
+        },
+        "&:disabled": {},
+      },
+    };
+  }
+  if (variant === "danger") {
+    hoverStyle = {
+      "&:hover": {
+        "&:not([disabled])": {
+          borderColor: "hoveredDanger",
+          background: "hoveredDanger",
+        },
+        "&:disabled": {},
+      },
+    };
   }
 
   return (
-    <StyledButton
-      $isLoading={isLoading}
-      className={classNames.join(" ")}
-      disabled={isDisabled}
-      {...internalProps}
-      {...rest}
+    <ThemeUIButton
+      {...props}
+      variant={variant}
+      sx={{
+        variant: `buttons.${variant}`,
+        textTransform: "uppercase",
+        fontSize: buttonFontSizes[size],
+        px: buttonPadding[size].x,
+        py: buttonPadding[size].y,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        transition: "all .3s linear",
+        "&:active": {
+          transform: "scale(0.9)",
+        },
+        ...hoverStyle,
+        width: fullWidth ? "100%" : "max-content",
+      }}
     >
-      <>
-        {isValidElement(startIcon) &&
-          cloneElement(startIcon, {
-            mr: "0.5rem",
-          })}
-        {children}
-        {isValidElement(endIcon) &&
-          cloneElement(endIcon, {
-            ml: "0.5rem",
-          })}
-      </>
-    </StyledButton>
+      {React.isValidElement(startIcon) &&
+        React.cloneElement(startIcon, {
+          mr: "0.5rem",
+        })}
+      {children} {load && <Icon color="currentColor" ml="5px" spin />}
+      {React.isValidElement(endIcon) &&
+        React.cloneElement(endIcon, {
+          ml: "0.5rem",
+        })}
+    </ThemeUIButton>
   );
-};
-
-Button.defaultProps = {
-  isLoading: false,
-  external: false,
-  variant: variants.PRIMARY,
-  scale: scales.MD,
-  disabled: false,
 };
 
 export default Button;

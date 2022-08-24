@@ -1,51 +1,75 @@
-import { ComponentProps, ElementType, ReactElement, ReactNode } from "react";
-import { Link } from "react-router-dom";
-import { LayoutProps, SpaceProps } from "styled-system";
+import { ReactNode } from "react";
+import { ButtonProps as ThemeUIButtonProps } from "theme-ui";
+import { iconTypes } from "../Svg/types";
+import { colorProps } from "../../theme/Apeswap/types";
 
-export const scales = {
-  MD: "md",
-  SM: "sm",
-  XS: "xs",
-} as const;
-
-export const variants = {
-  PRIMARY: "primary",
-  SECONDARY: "secondary",
-  TERTIARY: "tertiary",
-  TEXT: "text",
-  DANGER: "danger",
-  SUBTLE: "subtle",
-  SUCCESS: "success",
-  LIGHT: "light",
-} as const;
-
-export type Scale = typeof scales[keyof typeof scales];
-export type Variant = typeof variants[keyof typeof variants];
-
-/**
- * @see https://www.benmvp.com/blog/polymorphic-react-components-typescript/
- */
-export type AsProps<E extends ElementType = ElementType> = {
-  as?: E;
-};
-
-export type MergeProps<E extends ElementType> = AsProps<E> & Omit<ComponentProps<E>, keyof AsProps>;
-
-export type PolymorphicComponentProps<E extends ElementType, P> = P & MergeProps<E>;
-
-export type PolymorphicComponent<P, D extends ElementType = "button"> = <E extends ElementType = D>(
-  props: PolymorphicComponentProps<E, P>
-) => ReactElement | null;
-
-export interface BaseButtonProps extends LayoutProps, SpaceProps {
-  as?: "a" | "button" | typeof Link;
-  external?: boolean;
-  isLoading?: boolean;
-  scale?: Scale;
-  variant?: Variant;
-  disabled?: boolean;
-  startIcon?: ReactNode;
-  endIcon?: ReactNode;
+export enum sizes {
+  SMALL = "sm",
+  MEDIUM = "md",
+  LARGE = "lg",
 }
 
-export type ButtonProps<P extends ElementType = "button"> = PolymorphicComponentProps<P, BaseButtonProps>;
+export type Sizes = typeof sizes[keyof typeof sizes];
+
+export const buttonFontSizes = {
+  [sizes.SMALL]: 1,
+  [sizes.MEDIUM]: 3,
+  [sizes.LARGE]: 6,
+};
+
+export const buttonPadding = {
+  [sizes.SMALL]: { x: 5, y: 2 },
+  [sizes.MEDIUM]: { x: 7, y: 4 },
+  [sizes.LARGE]: { x: 10, y: 6 },
+};
+
+export enum variants {
+  PRIMARY = "primary",
+  SECONDARY = "secondary",
+  TERTIARY = "tertiary",
+  TEXT = "text",
+  SUCCESS = "success",
+  DANGER = "danger",
+}
+
+export enum iconButtonVariants {
+  PRIMARY = "primary",
+  TRANSPARENT = "transparent",
+  CIRCULAR = "circular",
+}
+
+export type sizeProps = `${sizes}`;
+export type variantProps = `${variants}`;
+export type iconButtonVariantsProps = `${iconButtonVariants}`;
+
+export interface ButtonProps extends Omit<ThemeUIButtonProps, "sx"> {
+  variant?: variantProps;
+  size?: sizeProps;
+  startIcon?: ReactNode;
+  endIcon?: ReactNode;
+  fullWidth?: boolean;
+  load?: boolean;
+  [key: string]: any;
+}
+
+export interface IconButtonProps extends Omit<ButtonProps, "variant"> {
+  variant?: iconButtonVariantsProps;
+  color?: colorProps;
+  background?: colorProps;
+  icon?: iconTypes;
+}
+
+export type ButtonThemeVariant = {
+  background: string;
+  backgroundActive: string;
+  backgroundHover: string;
+  border: string | number;
+  borderColorHover: string;
+  boxShadow: string;
+  boxShadowActive: string;
+  color: string;
+};
+
+export type ButtonTheme = {
+  [key in variants]: ButtonThemeVariant;
+};

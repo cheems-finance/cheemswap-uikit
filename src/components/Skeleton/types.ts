@@ -1,19 +1,21 @@
-export const animation = {
-  WAVES: "waves",
-  PULSE: "pulse",
-} as const;
+import { BoxProps } from "theme-ui";
 
-export const variant = {
-  RECT: "rect",
-  CIRCLE: "circle",
-} as const;
+export enum animation {
+  WAVES = "waves",
+  PULSE = "pulse",
+}
 
-export type Animation = typeof animation[keyof typeof animation];
-export type Variant = typeof variant[keyof typeof variant];
+export enum variant {
+  RECT = "rect",
+  CIRCLE = "circle",
+}
 
-export interface SkeletonProps {
+type Animation = `${animation}`;
+type Variant = `${variant}`;
+
+export interface SkeletonProps extends BoxProps {
   animation?: Animation;
   variant?: Variant;
-  width?: number;
-  height?: number;
+  width?: string | number;
+  height?: string | number;
 }

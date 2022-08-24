@@ -25,28 +25,45 @@ export type Shadows = {
   success: string;
   warning: string;
   focus: string;
+  yellow: string;
   inset: string;
 };
 
+export type Gradients = {
+  bubblegum?: string;
+  newGradient?: string;
+};
+
 export type Colors = {
-  primary: string;
   primaryBright: string;
   primaryDark: string;
-  secondary: string;
-  tertiary: string;
   success: string;
-  failure: string;
-  warning: string;
-  contrast: string;
-  invertedContrast: string;
-  input: string;
+  brown: string;
+  error: string; // replaces failure
+  yellow: string;
+  black?: string;
+  dividerColor: string;
+  navbar: string;
+  primaryButtonDisable: string;
+  secondaryButtonDisableBg: string;
+  secondaryButtonDisableColor: string;
   background: string;
   backgroundDisabled: string;
+  white2: string;
+  white3: string;
+  white4: string;
   text: string;
-  textDisabled: string;
-  textSubtle: string;
-  borderColor: string;
-  card: string;
+  primary: string;
+  gray: string;
+  inputBorder: string;
+  tertiary: string;
+  primaryGray: string;
+  smartGradient: string;
+  yellowHover: string;
+  input: string;
+
+  // Gradients
+  gradients?: Gradients;
 
   // Brand colors
   binance: string;
@@ -55,4 +72,8 @@ export type Colors = {
 export type ZIndices = {
   dropdown: number;
   modal: number;
+};
+
+export type FontFamily = {
+  quicksand: string;
 };

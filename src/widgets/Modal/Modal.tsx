@@ -1,56 +1,63 @@
-import React from "react";
-import styled from "styled-components";
-import Heading from "../../components/Heading/Heading";
-import Button from "../../components/Button/Button";
-import Flex from "../../components/Flex/Flex";
-import { CloseIcon } from "../../components/Svg";
+/** @jsxImportSource theme-ui */
+import React, { useContext } from "react";
+import { Box } from "theme-ui";
+import { AnimatePresence, motion } from "framer-motion";
 import { ModalProps } from "./types";
+import style from "./styles";
+import ModalHeader from "./ModalHeader";
+import { Heading } from "../../components/Heading";
+import { Context as ModalContext } from "./ModalContext";
 
-interface Props extends ModalProps {
-  title: string;
-}
+const Modal: React.FC<ModalProps> = ({
+  children,
+  onDismiss,
+  open = true,
+  title,
+  zIndex = "modal",
+  minWidth = "50%",
+  maxWidth = "80%",
+  onAnimationComplete,
+  ...props
+}) => {
+  const { handleClose } = useContext(ModalContext);
+  const onClose = onDismiss || handleClose;
 
-const StyledModal = styled.div`
-  background: ${({ theme }) => theme.modal.background};
-  box-shadow: 0px 20px 36px -8px rgba(14, 14, 44, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.05);
-  border: 1px solid ${({ theme }) => theme.colors.borderColor};
-  border-radius: 12px;
-  width: 100%;
-  z-index: ${({ theme }) => theme.zIndices.modal};
-  overflow-y: auto;
-  ${({ theme }) => theme.mediaQueries.xs} {
-    width: auto;
-    min-width: 360px;
-    max-width: 100%;
-  }
-`;
-
-const ModalHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #e9eaeb;
-  align-items: center;
-  padding: 12px 24px;
-`;
-
-const CloseButton = styled(Button)`
-  padding: 8px;
-  width: 48px;
-`;
-
-const Modal: React.FC<Props> = ({ title, onDismiss, children }) => (
-  <StyledModal>
-    <ModalHeader>
-      <Heading>{title}</Heading>
-      <CloseButton variant="text" onClick={onDismiss} aria-label="Close the dialog">
-        <CloseIcon color="primary" onClick={onDismiss} />
-      </CloseButton>
-    </ModalHeader>
-    <Flex flexDirection="column" p="24px">
-      {children}
-    </Flex>
-  </StyledModal>
-);
+  return (
+    <Box id={title}>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, transform: "translate(-50%, -50%) scale(0.1)" }}
+            animate={{ opacity: 1, transform: "translate(-50%, -50%) scale(1.0)" }}
+            transition={{ opacity: { duration: 0.2 }, transform: { duration: 0.2 } }}
+            exit={{ opacity: 0, transform: "translate(-50%, -50%) scale(0)" }}
+            {...props}
+            sx={{ minWidth, maxWidth, zIndex, ...style.container }}
+            onAnimationComplete={onAnimationComplete}
+          >
+            {title && (
+              <ModalHeader onDismiss={onClose}>
+                <Heading>{title}</Heading>
+              </ModalHeader>
+            )}
+            {React.Children.map(children, (child) => {
+              if (React.isValidElement(child)) {
+                return React.cloneElement(child as any, {
+                  ...(child as any)?.props,
+                  onDismiss: () => {
+                    (child as any)?.props?.onDismiss?.();
+                    onClose();
+                  },
+                });
+              }
+              return child;
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {open && <Box sx={style.backdrop} onClick={onClose} />}
+    </Box>
+  );
+};
 
 export default Modal;

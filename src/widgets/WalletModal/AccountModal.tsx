@@ -1,52 +1,69 @@
-import React from "react";
+/** @jsxImportSource theme-ui */
+import React, { useContext } from "react";
 import Button from "../../components/Button/Button";
 import Text from "../../components/Text/Text";
-import Link from "../../components/Link/Link";
+import { Link } from "../../components/Link";
 import Flex from "../../components/Flex/Flex";
-import { OpenNewIcon } from "../../components/Svg";
 import { Modal } from "../Modal";
+import CopyToClipboard from "./CopyToClipboard";
 import { localStorageKey } from "./config";
+import { Context as ModalContext } from "../Modal/ModalContext";
+import { useMatchBreakpoints } from "../../hooks";
 
 interface Props {
   account?: string;
   logout: () => void;
-  onDismiss?: () => void;
+  t: (key: string) => string;
+  uDName?: string;
 }
 
-const AccountModal: React.FC<Props> = ({ account, logout, onDismiss = () => null }) => (
-  <Modal title="Your wallet" onDismiss={onDismiss}>
-    <Text
-      fontSize="20px"
-      bold
-      style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginBottom: "8px" }}
-    >
-      {account}
-    </Text>
-    <Link
-      fontSize="14px"
-      href={`https://explorer.dogechain.dog/address/${account}`}
-      target="blank"
-      rel="noopener noreferrer"
-      mb="32px"
-    >
-      <OpenNewIcon width="20px" color="primary" mr="4px" />
-      {`View on Explorer `}
-    </Link>
-    <Flex justifyContent="center">
-      <Button
-        size="sm"
-        variant="secondary"
-        onClick={() => {
-          logout();
-          window.localStorage.removeItem(localStorageKey);
-          onDismiss();
-          window.location.reload();
-        }}
+const AccountModal: React.FC<Props> = ({ uDName, account, logout, t }) => {
+  const { handleClose } = useContext(ModalContext);
+  const { isXs, isSm, isMd } = useMatchBreakpoints();
+  const reducedAddress = account ? `${account.substring(0, 15)}...${account.substring(account.length - 4)}` : null;
+
+  return (
+    <Modal title={t("Your wallet")} minWidth="350px">
+      <Text
+        size="20px"
+        weight={600}
+        sx={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}
+        mb="8px"
       >
-        Logout
-      </Button>
-    </Flex>
-  </Modal>
-);
+        {isXs || isSm || isMd ? uDName || reducedAddress : uDName || account}
+      </Text>
+      <Flex sx={{ alignItems: "center" }} mt="8px" mb="32px">
+        <Link
+          external
+          sx={{ "&:hover": { textDecoration: "underline" } }}
+          href={`https://explorer.dogechain.dog/address/${account}`}
+          mr="16px"
+        >
+          {t("View on Explorer")}
+        </Link>
+        <CopyToClipboard toCopy={account}>{t("Copy Address")}</CopyToClipboard>
+      </Flex>
+      <Flex sx={{ justifyContent: "center" }}>
+        <Button
+          size="sm"
+          variant="secondary"
+          onClick={() => {
+            logout();
+            window.localStorage.removeItem(localStorageKey);
+            handleClose();
+            window.location.reload();
+          }}
+        >
+          {t("Logout")}
+        </Button>
+      </Flex>
+    </Modal>
+  );
+};
+
+AccountModal.defaultProps = {
+  account: undefined,
+  uDName: undefined,
+};
 
 export default AccountModal;

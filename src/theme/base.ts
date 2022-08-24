@@ -1,15 +1,24 @@
-import { MediaQueries, Breakpoints, Spacing } from "./types";
+import { MediaQueries, Breakpoints, Spacing, FontFamily } from "./types";
 
-const breakpoints: Breakpoints = ["370px", "576px", "852px", "968px", "1080px", "1200"];
+export const breakpointMap: { [key: string]: number } = {
+  xs: 370,
+  sm: 576,
+  md: 852,
+  lg: 968,
+  xl: 1080,
+  xxl: 1200,
+};
+
+const breakpoints: Breakpoints = Object.values(breakpointMap).map((breakpoint) => `${breakpoint}px`);
 
 const mediaQueries: MediaQueries = {
-  xs: `@media screen and (min-width: ${breakpoints[0]})`,
-  sm: `@media screen and (min-width: ${breakpoints[1]})`,
-  md: `@media screen and (min-width: ${breakpoints[2]})`,
-  lg: `@media screen and (min-width: ${breakpoints[3]})`,
-  xl: `@media screen and (min-width: ${breakpoints[4]})`,
-  xxl: `@media screen and (min-width: ${breakpoints[5]})`,
-  nav: `@media screen and (min-width: ${breakpoints[3]})`,
+  xs: `@media screen and (min-width: ${breakpointMap.xs}px)`,
+  sm: `@media screen and (min-width: ${breakpointMap.sm}px)`,
+  md: `@media screen and (min-width: ${breakpointMap.md}px)`,
+  lg: `@media screen and (min-width: ${breakpointMap.lg}px)`,
+  xl: `@media screen and (min-width: ${breakpointMap.xl}px)`,
+  xxl: `@media screen and (min-width: ${breakpointMap.xxl}px)`,
+  nav: `@media screen and (min-width: ${breakpointMap.lg}px)`,
 };
 
 export const shadows = {
@@ -18,17 +27,22 @@ export const shadows = {
   success: "0px 0px 0px 1px #31D0AA, 0px 0px 0px 4px rgba(49, 208, 170, 0.2)",
   warning: "0px 0px 0px 1px #ED4B9E, 0px 0px 0px 4px rgba(237, 75, 158, 0.2)",
   focus: "0px 0px 0px 1px #7645D9, 0px 0px 0px 4px rgba(118, 69, 217, 0.6)",
+  yellow: "0px 0px 0px 1px #FFB300, 0px 0px 0px 4px rgb(255, 179, 0, .4)",
   inset: "inset 0px 2px 2px -1px rgba(74, 74, 104, 0.1)",
-  tooltip: "0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 12px -8px rgba(14, 14, 44, 0.1)",
 };
 
 const spacing: Spacing = [0, 4, 8, 16, 24, 32, 48, 64];
 
-const radii = {
-  small: "4px",
-  default: "10px",
-  card: "10px",
+const fontFamily: FontFamily = {
+  quicksand: "Quicksand",
+};
+
+export const radii = {
+  card: "32px",
   circle: "50%",
+  default: "16px",
+  normal: "10px",
+  small: "4px",
 };
 
 const zIndices = {
@@ -41,6 +55,7 @@ export default {
   breakpoints,
   mediaQueries,
   spacing,
+  fontFamily,
   shadows,
   radii,
   zIndices,

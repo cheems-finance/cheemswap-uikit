@@ -1,23 +1,6 @@
-import { SpaceProps } from "styled-system";
-import { Colors } from "../../theme/types";
+import { CardProps as ThemeUICardProps } from "theme-ui";
+import { colorProps } from "../../theme/Apeswap/types";
 
-export interface CardRibbonProps {
-  variantColor?: keyof Colors;
-  text: string;
-}
-
-export type CardTheme = {
-  background: string;
-  boxShadow: string;
-  boxShadowActive: string;
-  boxShadowSuccess: string;
-  boxShadowWarning: string;
-};
-
-export interface CardProps extends SpaceProps {
-  isActive?: boolean;
-  isSuccess?: boolean;
-  isWarning?: boolean;
-  isDisabled?: boolean;
-  ribbon?: React.ReactNode;
+export interface CardProps extends ThemeUICardProps {
+  background?: colorProps;
 }

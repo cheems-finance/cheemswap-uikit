@@ -1,10 +1,33 @@
-import styled from "styled-components";
-import Button from "./Button";
-import { BaseButtonProps, PolymorphicComponent } from "./types";
+import React from "react";
+import { Button } from "theme-ui";
+import { Svg } from "../Svg";
+import { icons } from "../Svg/types";
+import { IconButtonProps, iconButtonVariants as variants } from "./types";
+import style from "./styles";
+import colorValues from "../../theme/Apeswap/types";
 
-const IconButton: PolymorphicComponent<BaseButtonProps, "button"> = styled(Button)<BaseButtonProps>`
-  padding: 0;
-  width: ${({ scale }) => (scale === "sm" ? "32px" : "48px")};
-`;
+const IconButton: React.FC<IconButtonProps> = ({
+  icon = icons.DISCORD,
+  color = colorValues.white1,
+  background = colorValues.yellow,
+  variant = variants.PRIMARY,
+  children,
+  ...props
+}) => {
+  return (
+    <Button
+      {...props}
+      variant={variant}
+      sx={{
+        variant: `buttons.${variant}`,
+        background,
+        ...(variant === variants.PRIMARY ? style.primary : {}),
+        ...(variant === variants.TRANSPARENT ? style.transparent : {}),
+      }}
+    >
+      {children || <Svg color={color} icon={icon} {...props} />}
+    </Button>
+  );
+};
 
 export default IconButton;

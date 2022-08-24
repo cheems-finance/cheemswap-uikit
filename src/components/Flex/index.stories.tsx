@@ -16,12 +16,17 @@ export const Default: React.FC = () => {
       <Link href="https://styled-system.com/api#flexbox" target="_blank">
         List of applicable props
       </Link>
-      <Flex justifyContent="space-between" mt="40px">
+      <Flex sx={{ justifyContent: "space-between", backgroundColor: "green", marginTop: "40px" }}>
         <span>Left</span>
         <span>right</span>
       </Flex>
-      <Flex justifyContent="center" mt="8px">
+      <Flex sx={{ justifyContent: "center", backgroundColor: "red", marginTop: "8px" }}>
         <span>center</span>
+      </Flex>
+      <Flex sx={{ justifyContent: "space-between", backgroundColor: "yellow", marginTop: "40px" }}>
+        <span>Left</span>
+        <span>center</span>
+        <span>right</span>
       </Flex>
     </div>
   );

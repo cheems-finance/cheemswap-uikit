@@ -1,53 +1,32 @@
 import styled, { DefaultTheme } from "styled-components";
-import { space, variant, typography } from "styled-system";
-import { Colors } from "../../theme/types";
-import { scaleVariants, styleVariants } from "./theme";
-import { TagProps, variants } from "./types";
+import getColor from "../../util/getColor";
+import { TagProps } from "./types";
 
 interface ThemedProps extends TagProps {
   theme: DefaultTheme;
 }
 
-const getOutlineStyles = ({ outline, theme, variant: variantKey = variants.PRIMARY }: ThemedProps) => {
-  if (outline) {
-    const themeColorKey = styleVariants[variantKey].backgroundColor as keyof Colors;
-    const color = theme.colors[themeColorKey];
-
-    return `
-      color: ${color};
-      background: ${theme.colors.background};
-      border: 2px solid ${color};
-    `;
-  }
-
-  return "";
-};
+const getThemeTextColor = ({ outline, variant = "primary", theme }: ThemedProps) =>
+  outline ? getColor(variant, theme) : "#ffffff";
 
 export const StyledTag = styled.div<ThemedProps>`
   align-items: center;
-  border-radius: 6px;
-  color: #ffffff;
+  background-color: ${({ outline, theme, variant = "primary" }) =>
+    outline ? "transparent" : getColor(variant, theme)};
+  border: 2px solid ${({ variant = "primary", theme }) => getColor(variant, theme)};
+  border-radius: 16px;
+  color: ${getThemeTextColor};
   display: inline-flex;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 300;
+  height: 28px;
+  line-height: 1.5;
+  padding: 0 8px;
   white-space: nowrap;
 
-  & > svg {
-    fill: currentColor;
+  svg {
+    fill: ${getThemeTextColor};
   }
-
-  ${({ textTransform }) => textTransform && `text-transform: ${textTransform};`}
-
-  ${variant({
-    prop: "scale",
-    variants: scaleVariants,
-  })}
-  ${variant({
-    variants: styleVariants,
-  })}
-  ${space}
-  ${typography}
-
-  ${getOutlineStyles}
 `;
 
 export default null;
