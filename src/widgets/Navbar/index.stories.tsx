@@ -30,7 +30,7 @@ export const Connected: React.FC = (args: any) => {
 
   // eslint-disable-next-line no-empty-pattern
   const track = ({}: TrackProps): void => {
-    return ;
+    return;
   };
   const navbarApiResult = [
     {

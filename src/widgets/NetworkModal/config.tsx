@@ -6,7 +6,7 @@ import { Config } from "./types";
 
 export enum ChainId {
   DOGECHAIN = 2000,
-  DOGECHAIN_TESTNET = 568
+  DOGECHAIN_TESTNET = 568,
 }
 
 export const NETWORK_ICON: { [key: number]: any } = {

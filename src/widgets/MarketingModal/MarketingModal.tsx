@@ -205,7 +205,7 @@ const MarketingModal: React.FC<MarketingModalProps> = ({
   };
 
   const renderDots = () => {
-   return (
+    return (
       children &&
       childrens.map((_, index) => (
         <CircleButton
@@ -213,8 +213,9 @@ const MarketingModal: React.FC<MarketingModalProps> = ({
           key={`circle-${index}`}
           className={step === index ? "isActive" : ""}
         />
-      )))
-  }
+      ))
+    );
+  };
 
   return (
     <Container>
