@@ -10,7 +10,6 @@ import Nabox from "./icons/Nabox";
 import SafePalWallet from "./icons/SafePalWallet";
 import TorusWallet from "./icons/SocialLogin";
 import Coinbase from "./icons/Coinbase";
-import Unstoppable from "./icons/Unstoppable";
 import Bitkeep from "./icons/Bitkeep";
 import { Config, ConnectorNames } from "./types";
 
@@ -20,7 +19,7 @@ const connectors: Config[] = [
     icon: Metamask,
     connectorId: ConnectorNames.Injected,
   },
-  /* {
+  {
     title: "TrustWallet",
     icon: TrustWallet,
     connectorId: ConnectorNames.Injected,
@@ -34,13 +33,13 @@ const connectors: Config[] = [
     title: "Brave Wallet",
     icon: Brave,
     connectorId: ConnectorNames.Injected,
-  }, */
+  },
   {
     title: "WalletConnect",
     icon: WalletConnect,
     connectorId: ConnectorNames.WalletConnect,
   },
-  /* {
+  {
     title: "SafePal Wallet",
     icon: SafePalWallet,
     connectorId: ConnectorNames.Injected,
@@ -61,11 +60,6 @@ const connectors: Config[] = [
     connectorId: ConnectorNames.BSC,
   },
   {
-    title: "Unstoppable Domains",
-    icon: Unstoppable,
-    connectorId: ConnectorNames.Unstoppable,
-  },
-  {
     title: "NABOX Wallet",
     icon: Nabox,
     connectorId: ConnectorNames.Injected,
@@ -84,7 +78,7 @@ const connectors: Config[] = [
     title: "MathWallet",
     icon: MathWallet,
     connectorId: ConnectorNames.Injected,
-  }, */
+  },
 ];
 
 export default connectors;

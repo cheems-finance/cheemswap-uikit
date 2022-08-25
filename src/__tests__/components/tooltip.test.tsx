@@ -6,18 +6,22 @@ it("renders correctly", () => {
   const { asFragment } = renderWithTheme(<TooltipBubble body={<></>}>Tooltip</TooltipBubble>);
   expect(asFragment()).toMatchInlineSnapshot(`
     <DocumentFragment>
-      <div
-        class="css-14rwn71"
+      <span
+        class="css-1qnff7c"
       >
         <div
-          class="css-tcu21u"
+          class="css-140ll04"
         >
           <div
-            class="css-14aebwp"
+            class="css-17zq5c0"
           />
         </div>
-        Tooltip
-      </div>
+        <div
+          class="css-r8xm40"
+        >
+          Tooltip
+        </div>
+      </span>
     </DocumentFragment>
   `);
 });

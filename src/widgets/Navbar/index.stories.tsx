@@ -7,7 +7,7 @@ import Text from "../../components/Text/Text";
 import Navbar from "./Navbar";
 import { MenuEntry } from "./MenuEntry";
 import { links } from "./config";
-import { TrackHandler, TrackProps } from "../../util/trackClick";
+import { TrackProps } from "../../util/trackSocialClick";
 import StorybookLayout from "../../components/StorybookLayout/StorybookLayout";
 import { Language } from "../../components/LangSelector/types";
 
@@ -24,23 +24,20 @@ export default {
 
 const langs: Language[] = [...Array(20)].map((_, i) => ({ code: `en${i}`, language: `English${i}`, locale: `e${i}` }));
 const translate: (key: string) => string = (key) => key;
-const track: TrackHandler =
-  // eslint-disable-next-line no-empty-pattern
-
-
-    ({}: TrackProps) =>
-    () => ({});
 
 export const Connected: React.FC = (args: any) => {
   const [currentLang, setCurrentLang] = useState("English1");
 
+  // eslint-disable-next-line no-empty-pattern
+  const track = ({}: TrackProps): void => {
+    return ;
+  };
   const navbarApiResult = [
     {
       id: 1,
       settings: [
         { id: 1, label: "Raise", settings: [{ id: 1, tag: "LIVE", navItem: "Official IAO" }] },
         { id: 2, label: "Collect", settings: [{ id: 2, tag: "LIVE", navItem: "NFA Auction" }] },
-        { id: 3, label: "Explore", settings: [{ id: 1, tag: "LIVE", navItem: "ApeStats" }] },
       ],
       published_at: "2022-04-11T18:15:41.981Z",
       created_at: "2022-04-11T18:15:39.418Z",
@@ -63,17 +60,16 @@ export const Connected: React.FC = (args: any) => {
           t={translate}
           bananaPriceUsd={0.23158668932877668}
           links={links}
-          // profile={{
-          // profileLink: "https://ipfs.io/ipfs/QmYhuJnr3GGUnDGtg6rmSXTgo7FzaWgrriqikfgn5SkXhZ/7142.png",
-          // noProfileLink: "",
-          // image: "https://ipfs.io/ipfs/QmYhuJnr3GGUnDGtg6rmSXTgo7FzaWgrriqikfgn5SkXhZ/7142.png",
-          // }}
+          /* profile={{
+            profileLink: "https://ipfs.io/ipfs/QmYhuJnr3GGUnDGtg6rmSXTgo7FzaWgrriqikfgn5SkXhZ/7142.png",
+            noProfileLink: "",
+            image: "https://ipfs.io/ipfs/QmYhuJnr3GGUnDGtg6rmSXTgo7FzaWgrriqikfgn5SkXhZ/7142.png",
+          }} */
           chainId={2000}
           switchNetwork={noop}
           track={track}
           liveResult={navbarApiResult}
           // runFiat={noop}
-          iframe={false}
         >
           <div>
             <Heading as="h1" mb="8px">
@@ -115,7 +111,6 @@ export const NotConnected: React.FC = () => {
   return (
     <BrowserRouter>
       <Navbar
-        uDName={undefined}
         account={undefined}
         login={noop}
         logout={noop}
@@ -128,10 +123,8 @@ export const NotConnected: React.FC = () => {
         chainId={2000}
         switchNetwork={noop}
         liveResult={navbarApiResult}
-        track={track}
         // runFiat={noop}
         t={translate}
-        iframe={false}
       >
         <div style={{ lineHeight: "30px" }}>
           <h1>Page body</h1>
@@ -207,7 +200,6 @@ export const WithNoProfile: React.FC = () => {
   return (
     <BrowserRouter>
       <Navbar
-        uDName="babadrape64.wallet"
         account="0xbdda50183d817c3289f895a4472eb475967dc980"
         login={noop}
         logout={noop}
@@ -220,15 +212,13 @@ export const WithNoProfile: React.FC = () => {
         links={links}
         chainId={2000}
         switchNetwork={noop}
-        // profile={{
-        // profileLink: "/profile",
-        //  noProfileLink: "/no-profile",
-        // }}
+        /* profile={{
+          profileLink: "/profile",
+          noProfileLink: "/no-profile",
+        }} */
         liveResult={navbarApiResult}
-        track={track}
         // runFiat={noop}
         t={translate}
-        iframe={false}
       >
         <div>
           <Heading as="h1" mb="8px">
@@ -269,7 +259,6 @@ export const WithProfile: React.FC = () => {
   return (
     <BrowserRouter>
       <Navbar
-        uDName="babadrape64.wallet"
         account="0xbdda50183d817c3289f895a4472eb475967dc980"
         login={noop}
         logout={noop}
@@ -282,17 +271,15 @@ export const WithProfile: React.FC = () => {
         links={links}
         chainId={2000}
         switchNetwork={noop}
-        // profile={{
-        // name: "apeswap",
-        // image: "https://raw.githubusercontent.com/ApeSwapFinance/non-fungible-apes/main/images/4.png",
-        // profileLink: "/profile",
-        // noProfileLink: "/no-profile",
-        // }}
+        /* profile={{
+          name: "apeswap",
+          image: "https://raw.githubusercontent.com/ApeSwapFinance/non-fungible-apes/main/images/4.png",
+          profileLink: "/profile",
+          noProfileLink: "/no-profile",
+        }} */
         liveResult={navbarApiResult}
-        track={track}
         // runFiat={noop}
         t={translate}
-        iframe={false}
       >
         <div>
           <Heading as="h1" mb="8px">

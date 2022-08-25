@@ -4,9 +4,8 @@ const baseStyle = {
   p: 9,
   borderRadius: "normal",
   background: "navbar",
-  width: "max-content",
+  width: "100%",
   zIndex: "modal",
-  boxShadow: `0px 0px 30px rgb(200,200,200, .4)`,
 };
 
 const baseDirectionArrow = {
@@ -16,36 +15,68 @@ const baseDirectionArrow = {
   border: "12px solid transparent",
 };
 
-const topArrow = {
-  bottom: 0,
+const topRight = {
+  bottom: 2,
   ...baseDirectionArrow,
   borderBottom: 0,
   borderTopWidth: "15px",
   borderTopStyle: "solid",
-  transform: "translate(-50%, calc(100%))",
+  borderTopColor: "navbar",
+  right: "3%",
+  transform: "translate(-50%, calc(100% + 5px))",
 };
 
-const bottomArrow = {
-  top: 0,
+const topLeft = {
+  bottom: 2,
+  ...baseDirectionArrow,
+  borderBottom: 0,
+  borderTopWidth: "15px",
+  borderTopStyle: "solid",
+  borderTopColor: "navbar",
+  left: "12%",
+  transform: "translate(-50%, calc(100% + 5px))",
+};
+
+const bottomRight = {
+  top: 2,
   ...baseDirectionArrow,
   borderTop: 0,
   borderBottomWidth: "15px",
   borderBottomStyle: "solid",
-  transform: "translate(-50%, calc(-100%))",
+  borderBottomColor: "navbar",
+  right: "3%",
+  transform: "translate(-50%, calc(-100% - 5px))",
 };
 
-export const container = (hide?: boolean): ThemeUIStyleObject => ({
-  position: "relative",
-  display: "inline-block",
-  "& > div:first-of-type": {
-    display: "none",
-  },
-  "&:hover > div:first-of-type": {
-    display: hide ? "none" : "block",
-  },
-});
+const bottomLeft = {
+  top: 2,
+  ...baseDirectionArrow,
+  borderTop: 0,
+  borderBottomWidth: "15px",
+  borderBottomStyle: "solid",
+  borderBottomColor: "navbar",
+  left: "12%",
+  transform: "translate(-50%, calc(-100% - 5px))",
+};
+
+const after = {
+  content: '""',
+  width: "100%",
+  display: "block",
+  border: "15px solid transparent",
+  left: 0,
+};
 
 const styles: Record<string, ThemeUIStyleObject> = {
+  container: {
+    width: "232px",
+    "& > div:first-of-type": {
+      display: "none",
+    },
+    "&:hover > div:first-of-type": {
+      display: "block",
+    },
+  },
   default: {
     color: "text",
     fontSize: 0,
@@ -56,33 +87,70 @@ const styles: Record<string, ThemeUIStyleObject> = {
   bottomRight: {
     "&::before": {
       position: "absolute",
-      ...bottomArrow,
-      right: "3%",
-      borderBottomColor: "navbar",
+      ...bottomRight,
+    },
+    "&::after": {
+      ...after,
+      position: "absolute",
+      top: 0,
+      transform: "translateY(-20px)",
     },
   },
   bottomLeft: {
     "&::before": {
       position: "absolute",
-      ...bottomArrow,
-      left: "calc(3% + 15px)",
-      borderBottomColor: "navbar",
+      ...bottomLeft,
+    },
+    "&::after": {
+      ...after,
+      position: "absolute",
+      top: 0,
+      transform: "translateY(-20px)",
     },
   },
   topRight: {
     "&::before": {
       position: "absolute",
-      ...topArrow,
-      right: "3%",
-      borderTopColor: "navbar",
+      ...topRight,
+    },
+    "&::after": {
+      ...after,
+      position: "absolute",
+      bottom: 0,
+      transform: "translateY(20px)",
     },
   },
   topLeft: {
     "&::before": {
       position: "absolute",
-      ...topArrow,
-      left: "calc(3% + 15px)",
-      borderTopColor: "navbar",
+      ...topLeft,
+    },
+    "&::after": {
+      ...after,
+      position: "absolute",
+      bottom: 0,
+      transform: "translateY(20px)",
+    },
+  },
+  linkWrapper: {
+    justifyContent: "center",
+    gap: 3,
+    alignItems: "center",
+    fontWeight: "bold",
+    textDecoration: "underline",
+    svg: {
+      fill: "text",
+      path: "text",
+    },
+  },
+  flex: {
+    justifyContent: "space-between",
+    alignItems: "center",
+    fontSize: 0,
+    lineHeight: "18px",
+    color: "text",
+    "span:nth-of-type(2)": {
+      fontWeight: "bold",
     },
   },
 };

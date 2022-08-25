@@ -6,7 +6,6 @@ export enum ConnectorNames {
   WalletConnect = "walletconnect",
   BSC = "bsc",
   Walletlink = "Walletlink",
-  Unstoppable = "Unstoppable",
   Torus = "Torus",
 }
 

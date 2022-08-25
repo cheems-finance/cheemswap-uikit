@@ -13,10 +13,9 @@ import { LiveResultProps, PanelProps, PushedProps } from "./types";
 import Text from "../../components/Text/Text";
 import Tag from "../../components/Tag/Tag";
 import Flex from "../../components/Flex/Flex";
-import trackClick, { TrackHandler } from "../../util/trackClick";
+import trackSocialClick, { TrackHandler } from "../../util/trackSocialClick";
 import styles from "./styles";
 import LangSelectorButton from "../../components/LangSelectorButton/LangSelectorButton";
-// import { RunFiatButton } from "../../components/RunFiatButton";
 
 interface MobileNavMenuProps extends PanelProps, PushedProps {
   isMobile: boolean;
@@ -27,7 +26,6 @@ interface MobileNavMenuProps extends PanelProps, PushedProps {
   track?: TrackHandler;
   liveResult?: LiveResultProps["apiResult"];
   t: (key: string) => string;
-  // runFiat: () => void;
 }
 
 const StyledLink = styled.a`
@@ -95,14 +93,12 @@ const MobileNavMenu: React.FC<MobileNavMenuProps> = ({
   track,
   liveResult,
   t,
-  // runFiat,
 }) => {
   const iconFillColor = isDark ? darkTheme.colors.text : lightTheme.colors.text;
   const handleClick = isMobile ? () => pushNav(false) : undefined;
   const location = useLocation();
 
-  const position = "More";
-  const event = "socialClick";
+  const label = "More";
 
   return (
     <Wrapper isPushed={isPushed} showMenu={showMenu}>
@@ -137,11 +133,11 @@ const MobileNavMenu: React.FC<MobileNavMenuProps> = ({
                             ...styles.dropDownMenuText,
                             "&&&": {
                               background:
-                                item.label === "WOOF" && "linear-gradient(53.53deg, #A16552 15.88%, #E1B242 92.56%)",
-                              WebkitBackgroundClip: item.label === "WOOF" && "text",
-                              backgroundClip: item.label === "WOOF" && "text",
-                              WebkitTextFillColor: item.label === "WOOF" && "transparent",
-                              textFillColor: item.label === "WOOF" && "transparent",
+                                item.label === "GNANA" && "linear-gradient(53.53deg, #A16552 15.88%, #E1B242 92.56%)",
+                              WebkitBackgroundClip: item.label === "GNANA" && "text",
+                              backgroundClip: item.label === "GNANA" && "text",
+                              WebkitTextFillColor: item.label === "GNANA" && "transparent",
+                              textFillColor: item.label === "GNANA" && "transparent",
                             },
                             "&:hover": {
                               boxShadow: `0px 2px 0px ${iconFillColor}`,
@@ -153,6 +149,7 @@ const MobileNavMenu: React.FC<MobileNavMenuProps> = ({
                         >
                           {item.label}
                         </Text>
+                        {/* <StyledText label={item.label}>{item.label}</StyledText> */}
                         {(item?.isNew || subMenu?.tag === "LIVE") && (
                           <StyledTag variant={subMenu?.tag === "LIVE" ? "success" : "binance"}>
                             {subMenu?.tag === "LIVE" ? "LIVE" : "NEW"}
@@ -172,7 +169,7 @@ const MobileNavMenu: React.FC<MobileNavMenuProps> = ({
             isActive={entry.href === location.pathname}
             onClick={handleClick}
           >
-            <MenuLink href={entry.href} target={entry.label === "Lend" ? "_blank" : "_self"}>
+            <MenuLink href={entry?.href} target={entry.label === "Lend" ? "_blank" : "_parent"}>
               <LinkLabel isPushed={isPushed}>{entry.label}</LinkLabel>
             </MenuLink>
           </MenuEntry>
@@ -184,13 +181,18 @@ const MobileNavMenu: React.FC<MobileNavMenuProps> = ({
           justifyContent: "center",
           alignItems: "center",
           width: "100%",
-          height: "120px",
+          height: "100px",
           padding: "20px 0",
         }}
       >
         <Flex
           sx={{
-            flexDirection: "column-reverse",
+            "@media screen and (max-width: 400px)": {
+              flexDirection: "column-reverse",
+              alignItems: "center",
+            },
+
+            flexDirection: "row",
             justifyContent: "space-evenly",
             alignItems: "center",
             width: "90%",
@@ -204,43 +206,36 @@ const MobileNavMenu: React.FC<MobileNavMenuProps> = ({
               width: "200px",
             }}
           >
-            <StyledLink href="https://twitter.com/cheemsswapdoge" target="_blank" rel="noopener noreferrer">
+            <StyledLink href="https://twitter.com/ape_swap" target="_blank" rel="noopener noreferrer">
               <TwitterIcon
                 color="white3"
                 fill={iconFillColor}
-                onClick={() =>
-                  trackClick(track, event, position, chainId, "twitter", "https://twitter.com/cheemsswapdoge")
-                }
+                onClick={() => trackSocialClick(track, "twitter", label, "https://twitter.com/ape_swap", chainId)}
               />
             </StyledLink>
-            <StyledLink href="https://t.me/cheemswap" target="_blank" rel="noopener noreferrer">
+            <StyledLink href="https://t.me/ape_swap" target="_blank" rel="noopener noreferrer">
               <TelegramIcon
                 color="white3"
                 fill={iconFillColor}
-                onClick={() => trackClick(track, event, position, chainId, "telegram", "https://t.me/cheemswap")}
+                onClick={() => trackSocialClick(track, "telegram", label, "https://t.me/ape_swap", chainId)}
               />
             </StyledLink>
-            {/* <StyledLink href="https://t.me/cheemswap" target="_blank" rel="noopener noreferrer">
+            <StyledLink href="https://t.me/ape_swap" target="_blank" rel="noopener noreferrer">
               <DiscordIcon
                 color="white3"
                 fill={iconFillColor}
-                onClick={() =>
-                  trackClick(track, event, position, chainId, "discord", "https://discord.com/invite/ApeSwap")
-                }
+                onClick={() => trackSocialClick(track, "discord", label, "https://discord.com/invite/ApeSwap", chainId)}
               />
-              </StyledLink> */}
+            </StyledLink>
           </div>
-          <Flex sx={{ marginBottom: "15px" }}>
+          <Flex
+            sx={{
+              "@media screen and (max-width: 400px)": {
+                marginBottom: "10px",
+              },
+            }}
+          >
             <LangSelectorButton currentLang={currentLang} langs={langs} setLang={setLang} t={t} />
-            {/* <RunFiatButton
-              mini
-              runFiat={runFiat}
-              t={t}
-              sx={{ width: "30px" }}
-              track={track}
-              position="NavBar"
-              chainId={chainId}
-            /> */}
             <NetworkButton chainId={chainId} switchNetwork={switchNetwork} t={t} />
           </Flex>
         </Flex>

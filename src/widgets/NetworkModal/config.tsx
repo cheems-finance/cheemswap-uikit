@@ -1,10 +1,12 @@
+import { ETH as ETHIcon } from "../../components/Svg/tokens";
+import BinanceChain from "./icons/BinanceChain";
 import PolygonChain from "./icons/PolygonChain";
 import DogeChain from "./icons/DogeChain";
 import { Config } from "./types";
 
 export enum ChainId {
   DOGECHAIN = 2000,
-  DOGECHAIN_TESTNET = 568,
+  DOGECHAIN_TESTNET = 568
 }
 
 export const NETWORK_ICON: { [key: number]: any } = {
@@ -20,7 +22,7 @@ export const NETWORK_LABEL: { [key: number]: any } = {
 const networks: Config[] = [
   {
     chainId: ChainId.DOGECHAIN,
-    networkName: "DogeChain",
+    networkName: "Dogechain",
     symbol: NETWORK_LABEL[ChainId.DOGECHAIN],
     icon: NETWORK_ICON[ChainId.DOGECHAIN],
   },

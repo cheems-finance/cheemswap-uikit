@@ -8,21 +8,20 @@ import { Text } from "../../components/Text";
 
 interface Props {
   account?: string | undefined;
-  uDName?: string | undefined;
   login: Login;
   logout: () => void;
   t: (key: string) => string;
 }
 
-const UserBlock: React.FC<Props> = ({ uDName, account, login, logout, t }) => {
-  const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, t, account, uDName);
+const UserBlock: React.FC<Props> = ({ account, login, logout, t }) => {
+  const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, t, account);
   const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
   const { isXs } = useMatchBreakpoints();
 
-  const buttonStyle = dynamicStyles.userBlockBtn({ account, uDName });
+  const buttonStyle = dynamicStyles.userBlockBtn({ account });
 
   const loadButton = () => {
-    if (uDName || account) {
+    if (account) {
       if (isXs) {
         return (
           <Button
@@ -33,9 +32,9 @@ const UserBlock: React.FC<Props> = ({ uDName, account, login, logout, t }) => {
             onClick={() => {
               onPresentAccountModal();
             }}
-            account={uDName || account}
+            account={account}
           >
-            <Text weight="normal">{uDName || accountEllipsis}</Text>
+            <Text weight="normal">{accountEllipsis}</Text>
           </Button>
         );
       }
@@ -48,9 +47,9 @@ const UserBlock: React.FC<Props> = ({ uDName, account, login, logout, t }) => {
           onClick={() => {
             onPresentAccountModal();
           }}
-          account={uDName || account}
+          account={account}
         >
-          <Text weight="normal">{uDName || accountEllipsis}</Text>
+          <Text weight="normal">{accountEllipsis}</Text>
         </Button>
       );
     }
@@ -62,7 +61,7 @@ const UserBlock: React.FC<Props> = ({ uDName, account, login, logout, t }) => {
         onClick={() => {
           onPresentConnectModal();
         }}
-        account={uDName || account}
+        account={account}
       >
         {t("Connect")}
       </Button>
@@ -74,7 +73,6 @@ const UserBlock: React.FC<Props> = ({ uDName, account, login, logout, t }) => {
 
 UserBlock.defaultProps = {
   account: "",
-  uDName: "",
 };
 
 export default UserBlock;

@@ -58,7 +58,6 @@ export type Colors = {
   inputBorder: string;
   tertiary: string;
   primaryGray: string;
-  smartGradient: string;
   yellowHover: string;
   input: string;
 

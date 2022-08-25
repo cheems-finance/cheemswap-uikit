@@ -47,12 +47,6 @@ export enum icons {
   INSTAGRAM = "instagram",
   WEBSITE = "website",
   TELEGRAM = "telegram",
-  ARROW = "arrow",
-  SWAP_ARROWS = "swapArrows",
-  INFO_SOLID = "infoSolid",
-  CANCELLED = "cancelled",
-  SUCCESS_OUTLINE = "successOutline",
-  TRASH = "trash",
 }
 
 export enum directions {

@@ -6,7 +6,7 @@ interface LogoProps extends LegacySvgProps {
   isDark: boolean;
 }
 const StyledLogo = styled.h1`
-  font-family: "Quicksand", san-serif;
+  font-family: "Titan One", cursive;
   color: #af6e5a;
   font-weight: 400;
   font-size: 20px;
@@ -14,7 +14,7 @@ const StyledLogo = styled.h1`
 `;
 
 const Logo: React.FC<LogoProps> = () => {
-  return <StyledLogo>Cheems Finance</StyledLogo>;
+  return <StyledLogo>ApeSwap</StyledLogo>;
 };
 
 export default Logo;

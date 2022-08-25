@@ -12,7 +12,7 @@ export const links: MenuEntry[] = [
     // darkIcon: "StakeDarkImage",
     items: [
       {
-        label: "CHEEMS Farms",
+        label: "BANANA Farms",
         href: "/farms",
         isNew: false,
       },
@@ -22,7 +22,7 @@ export const links: MenuEntry[] = [
         isNew: false,
       },
       {
-        label: "Kennel Farms",
+        label: "Jungle Farms",
         href: "/jungle-farms",
         isNew: true,
       },
@@ -32,7 +32,7 @@ export const links: MenuEntry[] = [
         isNew: false,
       },
       {
-        label: "WOOF",
+        label: "GNANA",
         href: "/gnana",
         isNew: false,
       },
@@ -44,17 +44,12 @@ export const links: MenuEntry[] = [
     // darkIcon: "OfferingsDarkImage",
     items: [
       {
-        label: "Treasury Bills",
-        href: "/treasury-bills",
-        isNew: false,
-      },
-      {
         label: "Official IAO",
         href: "/iao",
         isNew: false,
       },
       {
-        label: "Self-Serve IAO",
+        label: "Self-Serve",
         href: "/ss-iao",
         isNew: false,
       },
@@ -89,23 +84,23 @@ export const links: MenuEntry[] = [
     isNew: false,
   },
   {
-    label: "Explore",
+    label: "More",
     // lightIcon: "MoreLightImage",
     // darkIcon: "MoreDarkImage",
     items: [
       {
-        label: "ApeStats",
-        href: "/apestats",
-        isNew: true,
-      },
-      {
-        label: "Documentation",
+        label: "Docs",
         href: "https://apeswap.gitbook.io/apeswap-finance/",
         isNew: false,
       },
       {
         label: "Charts",
-        href: "https://apeswap.finance",
+        href: "https://apeswap.gitbook.io/apeswap-finance/",
+        isNew: false,
+      },
+      {
+        label: "Leverage Trading",
+        href: "https://apemex.exchange/margin",
         isNew: false,
       },
       {
@@ -114,8 +109,8 @@ export const links: MenuEntry[] = [
         isNew: false,
       },
       {
-        label: "Education",
-        href: "https://www.apelabs.education/",
+        label: "BANANA Burns",
+        href: "/burn",
         isNew: false,
       },
     ],

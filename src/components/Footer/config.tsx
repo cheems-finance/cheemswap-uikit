@@ -1,56 +1,56 @@
 export const supportLinks = [
   {
     label: "FAQ",
-    href: "https://cheemswap.gitbook.io/cheemswap-finance/welcome/master",
+    href: "https://apeswap.gitbook.io/apeswap-finance/welcome/master",
   },
-  /* {
+  {
     label: "Discord",
     href: "https://discord.com/invite/ApeSwap",
-  }, */
+  },
   {
     label: "Tokenomics",
-    href: "https://cheemswap.gitbook.io/cheemswap-finance/product-and-features/cheemswaps-tokens/cheems",
+    href: "https://apeswap.gitbook.io/apeswap-finance/product-and-features/apeswaps-tokens/banana",
   },
-  /* {
+  {
     label: "Audits",
-    href: "https://cheemswap.gitbook.io/cheemswap-finance/where-dev/security/audits",
-  }, */
+    href: "https://apeswap.gitbook.io/apeswap-finance/where-dev/security/audits",
+  },
 ];
 
 export const engageLinks = [
-  /* {
+  {
     label: "Governance",
-    href: "https://discuss.cheemswap.finance",
-  }, */
+    href: "https://apeswap.gitbook.io/apeswap-finance/governance",
+  },
   {
     label: "Partner Application",
-    href: "https://forms.google.com",
+    href: "https://docs.google.com/forms/d/e/1FAIpQLSdiC4jpKQAYD4iALGrm9ErmDIs1xtsOENu9GsvgdczVwe_uOw/viewform",
   },
   {
     label: "Bug Bounty",
-    href: "https://cheemswap.gitbook.io/cheemswap-finance/where-dev/security/bug-bounty-program",
+    href: "https://apeswap.gitbook.io/apeswap-finance/where-dev/security/bug-bounty-program",
   },
   {
     label: "Developer Grants",
-    href: "https://github.com/cheems-finance/cheemswap-frontend/issues",
+    href: "https://github.com/ApeSwapFinance/apeswap-frontend/issues",
   },
 ];
 
 export const learnLinks = [
   {
     label: "Docs",
-    href: "https://cheemswap.gitbook.io/cheemswap-finance/welcome/master",
+    href: "https://apeswap.gitbook.io/apeswap-finance/welcome/master",
   },
-  /* {
+  {
     label: "ApeLabs",
-    href: "https://www.cheemlabs.education/",
+    href: "https://www.apelabs.education/",
   },
   {
     label: "ApeTV Podcast",
     href: "https://open.spotify.com/show/4nFre3hez2RKPCqkX7CZBa",
-  }, */
+  },
   {
     label: "Github",
-    href: "https://github.com/cheems-finance/",
+    href: "https://github.com/ApeSwapFinance/",
   },
 ];

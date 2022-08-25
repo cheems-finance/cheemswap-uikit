@@ -1,7 +1,7 @@
 {
   "name": "@cheemswap/uikit",
-  "version": "3.0.3",
-  "description": "Set of UI components for cheemsswap projects",
+  "version": "4.0.0",
+  "description": "Set of UI components for cheemswap projects",
   "main": "dist/index.cjs.js",
   "resolutions": {
     "**/ua-parser-js": "^0.7.30"

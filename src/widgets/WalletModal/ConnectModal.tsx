@@ -28,7 +28,7 @@ const ConnectModal: React.FC<Props> = ({ login, t }) => (
     </Flex>
     <Flex sx={{ alignItems: "center", justifyContent: "center" }} mt="10px">
       <Link
-        href="https://cheemswap.gitbook.io/cheemswap-finance/product-and-features/wallets/how-to-connect-your-wallet"
+        href="https://apeswap.gitbook.io/apeswap-finance/product-and-features/wallets/how-to-connect-your-wallet"
         external
         color="text"
         sx={{

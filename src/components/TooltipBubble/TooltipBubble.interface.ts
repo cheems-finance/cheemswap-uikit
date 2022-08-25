@@ -14,6 +14,4 @@ export interface TooltipProps extends BoxProps {
   width?: string;
   placement?: placementProps;
   body: ReactNode;
-  hideTooltip?: boolean;
-  transformTip?: string;
 }

@@ -10,7 +10,7 @@ import MenuLink from "./MenuLink";
 import { MenuSubEntry } from "./types";
 import darkTheme from "../../theme/dark";
 import lightTheme from "../../theme/light";
-import trackClick, { TrackHandler } from "../../util/trackClick";
+import trackSocialClick, { TrackHandler } from "../../util/trackSocialClick";
 import { RunFiatButton } from "../../components/RunFiatButton";
 import { Tag } from "../../components/Tag";
 import styles from "./styles";
@@ -19,8 +19,8 @@ const Icons = ImageModule as unknown as { [key: string]: React.FC };
 
 interface SubNavbarProps {
   items: MenuSubEntry[];
-  // image?: string;
-  position: string;
+  image?: string;
+  label: string;
   isDark: boolean;
   chainId: number | string;
   track?: TrackHandler | undefined;
@@ -53,21 +53,10 @@ const StyledTag = styled(Tag)`
   height: auto;
 `;
 
-const SubNavbar: React.FC<SubNavbarProps> = ({
-  items,
-  // image,
-  position,
-  isDark,
-  chainId,
-  track,
-  subMenu,
-  // runFiat,
-  t,
-}) => {
+const SubNavbar: React.FC<SubNavbarProps> = ({ items, image, label, isDark, chainId, track, subMenu, t }) => {
   const iconFillColor = isDark ? darkTheme.colors.text : lightTheme.colors.text;
-  // const Image = Icons[image || ""];
-  // const imageElement = <Image />;
-  const event = "socialClick";
+  const Image = Icons[image || ""];
+  const imageElement = <Image />;
 
   return (
     <Box sx={styles.cardContainer} key={1}>
@@ -80,11 +69,11 @@ const SubNavbar: React.FC<SubNavbarProps> = ({
                 sx={{
                   ...styles.dropDownMenuText,
                   "&&&": {
-                    background: item.label === "WOOF" && "linear-gradient(53.53deg, #A16552 15.88%, #E1B242 92.56%)",
-                    WebkitBackgroundClip: item.label === "WOOF" && "text",
-                    backgroundClip: item.label === "WOOF" && "text",
-                    WebkitTextFillColor: item.label === "WOOF" && "transparent",
-                    textFillColor: item.label === "WOOF" && "transparent",
+                    background: item.label === "GNANA" && "linear-gradient(53.53deg, #A16552 15.88%, #E1B242 92.56%)",
+                    WebkitBackgroundClip: item.label === "GNANA" && "text",
+                    backgroundClip: item.label === "GNANA" && "text",
+                    WebkitTextFillColor: item.label === "GNANA" && "transparent",
+                    textFillColor: item.label === "GNANA" && "transparent",
                   },
 
                   "&:hover": {
@@ -106,25 +95,8 @@ const SubNavbar: React.FC<SubNavbarProps> = ({
           );
         })}
       </Box>
-      {/* <Box sx={styles.navImage}>{imageElement}</Box> */}
-      {position === t("Exchange") && (
-        <Flex
-          sx={{
-            justifyContent: "space-between",
-            position: "absolute",
-            bottom: "10px",
-            right: "20px",
-            width: "100%",
-            marginLeft: "30px",
-            alignItems: "flex-end",
-          }}
-        >
-          <Box sx={{ margin: "0 0 5px 40px" }}>
-            {/* <RunFiatButton runFiat={runFiat} t={t} track={track} position="Tab" chainId={chainId} /> */}
-          </Box>
-        </Flex>
-      )}
-      {position === t("More") && (
+      <Box sx={styles.navImage}>{imageElement}</Box>
+      {label === t("More") && (
         <Flex
           sx={{
             justifyContent: "space-between",
@@ -136,32 +108,31 @@ const SubNavbar: React.FC<SubNavbarProps> = ({
             alignItems: "flex-end",
           }}
         >
+          {/* <Box sx={{ marginBottom: "5px" }}>
+            <RunFiatButton runFiat={runFiat} t={t} />
+          </Box> */}
           <Flex sx={{ justifyContent: "space-between", alignItems: "flex-end", width: "100%" }}>
-            <StyledLink href="https://twitter.com/cheemsswapdoge" target="_blank" rel="noopener noreferrer">
+            <StyledLink href="https://twitter.com/ape_swap" target="_blank" rel="noopener noreferrer">
               <TwitterIcon
                 color="white3"
                 fill={iconFillColor}
-                onClick={() =>
-                  trackClick(track, event, position, chainId, "twitter", "https://twitter.com/cheemswapdoge")
-                }
+                onClick={() => trackSocialClick(track, "twitter", label, "https://twitter.com/ape_swap", chainId)}
               />
             </StyledLink>
-            <StyledLink href="https://t.me/cheemswap" target="_blank" rel="noopener noreferrer">
+            <StyledLink href="https://t.me/ape_swap" target="_blank" rel="noopener noreferrer">
               <TelegramIcon
                 color="white3"
                 fill={iconFillColor}
-                onClick={() => trackClick(track, event, position, chainId, "telegram", "https://t.me/cheemswap")}
+                onClick={() => trackSocialClick(track, "telegram", label, "https://t.me/ape_swap", chainId)}
               />
             </StyledLink>
-            {/* <StyledLink href="https://discord.com/invite/ApeSwap" target="_blank" rel="noopener noreferrer">
+            <StyledLink href="https://discord.com/invite/ApeSwap" target="_blank" rel="noopener noreferrer">
               <DiscordIcon
                 color="white3"
                 fill={iconFillColor}
-                onClick={() =>
-                  trackClick(track, event, position, chainId, "discord", "https://discord.com/invite/ApeSwap")
-                }
+                onClick={() => trackSocialClick(track, "discord", label, "https://discord.com/invite/ApeSwap", chainId)}
               />
-              </StyledLink> */}
+            </StyledLink>
           </Flex>
         </Flex>
       )}
@@ -170,7 +141,7 @@ const SubNavbar: React.FC<SubNavbarProps> = ({
 };
 
 SubNavbar.defaultProps = {
-  // image: "",
+  image: "",
   track: undefined,
   subMenu: undefined,
 };

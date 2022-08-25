@@ -37,7 +37,7 @@ const baseTheme = {
     bold: 700,
   },
   fonts: {
-    quicksand: "quicksand",
+    quicksand: "Quicksand",
   },
   radii: {
     small: "4px",

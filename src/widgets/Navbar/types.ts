@@ -1,6 +1,6 @@
 import { SwitchNetwork } from "../NetworkModal";
 import { Login } from "../WalletModal";
-import { TrackHandler } from "../../util/trackClick";
+import { TrackHandler } from "../../util/trackSocialClick";
 import { Language } from "../../components/LangSelector/types";
 
 export interface LangType {
@@ -73,10 +73,8 @@ export interface NavProps extends PanelProps {
   logout: () => void;
   chainId: number;
   switchNetwork: SwitchNetwork;
-  track?: TrackHandler;
+  track?: TrackHandler | undefined;
   liveResult?: LiveResultProps["apiResult"] | undefined;
   t: (text: string) => string;
   // runFiat: () => void;
-  uDName?: string;
-  iframe: boolean;
 }
