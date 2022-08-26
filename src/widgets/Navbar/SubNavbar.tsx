@@ -19,7 +19,7 @@ const Icons = ImageModule as unknown as { [key: string]: React.FC };
 
 interface SubNavbarProps {
   items: MenuSubEntry[];
-  image?: string;
+  // image?: string;
   label: string;
   isDark: boolean;
   chainId: number | string;
@@ -53,10 +53,10 @@ const StyledTag = styled(Tag)`
   height: auto;
 `;
 
-const SubNavbar: React.FC<SubNavbarProps> = ({ items, image, label, isDark, chainId, track, subMenu, t }) => {
+const SubNavbar: React.FC<SubNavbarProps> = ({ items, label, isDark, chainId, track, subMenu, t }) => {
   const iconFillColor = isDark ? darkTheme.colors.text : lightTheme.colors.text;
-  const Image = Icons[image || ""];
-  const imageElement = <Image />;
+  // const Image = Icons[image || ""];
+  // const imageElement = <Image />;
 
   return (
     <Box sx={styles.cardContainer} key={1}>
@@ -69,11 +69,11 @@ const SubNavbar: React.FC<SubNavbarProps> = ({ items, image, label, isDark, chai
                 sx={{
                   ...styles.dropDownMenuText,
                   "&&&": {
-                    background: item.label === "GNANA" && "linear-gradient(53.53deg, #A16552 15.88%, #E1B242 92.56%)",
-                    WebkitBackgroundClip: item.label === "GNANA" && "text",
-                    backgroundClip: item.label === "GNANA" && "text",
-                    WebkitTextFillColor: item.label === "GNANA" && "transparent",
-                    textFillColor: item.label === "GNANA" && "transparent",
+                    background: item.label === "WOOF" && "linear-gradient(53.53deg, #A16552 15.88%, #E1B242 92.56%)",
+                    WebkitBackgroundClip: item.label === "WOOF" && "text",
+                    backgroundClip: item.label === "WOOF" && "text",
+                    WebkitTextFillColor: item.label === "WOOF" && "transparent",
+                    textFillColor: item.label === "WOOF" && "transparent",
                   },
 
                   "&:hover": {
@@ -95,7 +95,7 @@ const SubNavbar: React.FC<SubNavbarProps> = ({ items, image, label, isDark, chai
           );
         })}
       </Box>
-      <Box sx={styles.navImage}>{imageElement}</Box>
+      {/* <Box sx={styles.navImage}>{imageElement}</Box> */}
       {label === t("More") && (
         <Flex
           sx={{
@@ -141,7 +141,7 @@ const SubNavbar: React.FC<SubNavbarProps> = ({ items, image, label, isDark, chai
 };
 
 SubNavbar.defaultProps = {
-  image: "",
+  // image: "",
   track: undefined,
   subMenu: undefined,
 };

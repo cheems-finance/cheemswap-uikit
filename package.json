@@ -1,6 +1,6 @@
 {
   "name": "@cheemswap/uikit",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Set of UI components for cheemswap projects",
   "main": "dist/index.cjs.js",
   "resolutions": {

@@ -35,7 +35,7 @@ import darkTheme from "../../theme/dark";
 import { ThemeSwitcher } from "../ThemeSwitcher";
 import MobileLinks from "./MobileLinks";
 import trackSocialClick from "../../util/trackSocialClick";
-import { RunFiatButton } from "../RunFiatButton";
+// import { RunFiatButton } from "../RunFiatButton";
 import { Colors } from "../../theme/types";
 import { darkColors } from "../../theme";
 import LangSelector from "../LangSelector/LangSelector";
@@ -65,7 +65,7 @@ const Footer: React.FC<FooterProps> = ({
           <FullLogo width="240px" mb="20px" />
           <Text color="primaryBright" size="16px">
             {t(
-              `ApeSwap is a DeFi Hub on BNB Chain & Polygon focused on offering an accessible, transparent and secure experience for everyone.`
+              `Cheemswap is a DeFi Hub on Dogechain focused on offering an accessible, transparent and secure experience for everyone.`
             )}
           </Text>
           <ButtonFlex>
@@ -74,42 +74,42 @@ const Footer: React.FC<FooterProps> = ({
             <LangSelector currentLang={currentLang} langs={langs} setLang={setLang} />
           </ButtonFlex>
           <IconFlex>
-            <StyledLink href="https://twitter.com/ape_swap" target="_blank" rel="noopener noreferrer">
+            <StyledLink href="https://twitter.com/cheemsswapdoge" target="_blank" rel="noopener noreferrer">
               <TwitterIcon
                 color="white3"
                 fill={iconFillColor}
-                onClick={() => trackSocialClick(track, "twitter", label, "https://twitter.com/ape_swap", chainId)}
+                onClick={() => trackSocialClick(track, "twitter", label, "https://twitter.com/cheemsswapdoge", chainId)}
               />
             </StyledLink>
-            <StyledLink href="https://discord.com/invite/ApeSwap" target="_blank" rel="noopener noreferrer">
+            {/* <StyledLink href="https://discord.com/invite/ApeSwap" target="_blank" rel="noopener noreferrer">
               <DiscordIcon
                 color="white3"
                 fill={iconFillColor}
                 onClick={() => trackSocialClick(track, "discord", label, "https://discord.com/invite/ApeSwap", chainId)}
               />
-            </StyledLink>
-            <StyledLink href="https://t.me/ape_swap" target="_blank" rel="noopener noreferrer">
+            </StyledLink> */}
+            <StyledLink href="https://t.me/cheemswap" target="_blank" rel="noopener noreferrer">
               <TelegramIcon
                 color="white3"
                 fill={iconFillColor}
-                onClick={() => trackSocialClick(track, "telegram", label, "https://t.me/ape_swap", chainId)}
+                onClick={() => trackSocialClick(track, "telegram", label, "https://t.me/cheemswap", chainId)}
               />
             </StyledLink>
-            <StyledLink href="https://www.reddit.com/r/Apeswap/" target="_blank" rel="noopener noreferrer">
+            {/* <StyledLink href="https://www.reddit.com/r/Apeswap/" target="_blank" rel="noopener noreferrer">
               <RedditIcon
                 color="white3"
                 fill={iconFillColor}
                 onClick={() => trackSocialClick(track, "reddit", label, "https://www.reddit.com/r/Apeswap/", chainId)}
               />
-            </StyledLink>
-            <StyledLink href="https://ape-swap.medium.com/" target="_blank" rel="noopener noreferrer">
+            </StyledLink> */}
+            <StyledLink href="https://medium.com/cheemswap" target="_blank" rel="noopener noreferrer">
               <MediumIcon
                 color="white3"
                 fill={iconFillColor}
-                onClick={() => trackSocialClick(track, "medium", label, "https://ape-swap.medium.com/", chainId)}
+                onClick={() => trackSocialClick(track, "medium", label, "https://medium.com/cheemswap", chainId)}
               />
             </StyledLink>
-            <StyledLink href="https://www.instagram.com/apeswap.finance/" target="_blank" rel="noopener noreferrer">
+            {/* <StyledLink href="https://www.instagram.com/apeswap.finance/" target="_blank" rel="noopener noreferrer">
               <InstagramIcon
                 color="white3"
                 fill={iconFillColor}
@@ -117,13 +117,13 @@ const Footer: React.FC<FooterProps> = ({
                   trackSocialClick(track, "instagram", label, "https://www.instagram.com/apeswap.finance/", chainId)
                 }
               />
-            </StyledLink>
+              </StyledLink> */}
           </IconFlex>
           <BottomRowContainer>
             <div style={{ marginRight: "21px" }}>
               {bananaPriceUsd ? (
                 <PriceLink
-                  href="https://info.apeswap.finance/token/0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95"
+                  href="https://info.cheemswap.dog/token/0x7d686b37CdCa9dE7c3CB75601E028383675153d2"
                   target="_blank"
                 >
                   <ApeSwapRoundIcon width="34px" mr="8px" />
@@ -133,8 +133,8 @@ const Footer: React.FC<FooterProps> = ({
                 <Skeleton width={90} height={35} />
               )}
             </div>
-            <a href="https://apeswap.finance/swap" target="_blank" rel="noopener noreferrer">
-              <BuyBananaButton>{t("BUY BANANA")}</BuyBananaButton>
+            <a href="https://cheemswap.dog/swap" target="_blank" rel="noopener noreferrer">
+              <BuyBananaButton>{t("BUY CHEEMS")}</BuyBananaButton>
             </a>
             {/* <RunFiatButton runFiat={runFiat} t={t} /> */}
           </BottomRowContainer>
